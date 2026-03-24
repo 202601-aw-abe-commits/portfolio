@@ -82,6 +82,12 @@ function generateNavigation() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Auto-expand document textareas so long entries stay readable without inner scrolling.
+  const resizeTextarea = (textarea) => {
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
+
   // ナビゲーションを生成
   generateNavigation();
 
@@ -155,5 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+  });
+
+  document.querySelectorAll('textarea.doc-text-input').forEach(textarea => {
+    resizeTextarea(textarea);
+    textarea.addEventListener('input', () => resizeTextarea(textarea));
   });
 });

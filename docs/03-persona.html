@@ -64,7 +64,7 @@
           <div class="fill-label">ペルソナ基本情報 <span class="required">必須</span></div>
           <div class="fill-hint">架空の人物として具体的に設定してください</div>
           <div class="fill-content">
-            <p>（ペルソナの基本情報を記載）</p>
+            <input type="text" class="doc-text-input" id="persona-profile" value="鈴木健太（２１）" aria-label="ペルソナ基本情報">
           </div>
         </div>
 
@@ -77,21 +77,32 @@
           <div class="fill-label">平日のタイムスケジュール <span class="required">必須</span></div>
           <div class="fill-hint">朝起きてから寝るまでの1日の流れ</div>
           <div class="fill-content">
-            <p>（タイムスケジュールを記載）</p>
+            <textarea class="doc-text-input" id="weekday-schedule" rows="10" aria-label="平日のタイムスケジュール">8:00 起床・通学準備
+9:00〜12:00 大学の授業
+12:00〜13:00 学食またはカフェで昼食
+13:00〜16:00 授業・空き時間に課題やレポート作業
+16:00〜18:00 カフェでPC作業（レポート・調べ物）
+18:00〜20:00 アルバイト（飲食店）
+21:00 帰宅・夕食
+22:00〜24:00 スマホやPCでSNS・動画視聴・課題</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">休日の過ごし方 <span class="required">必須</span></div>
           <div class="fill-hint">休日にどのように過ごしているか</div>
           <div class="fill-content">
-            <p>（休日の過ごし方を記載）</p>
+            <textarea class="doc-text-input" id="holiday-lifestyle" rows="9" aria-label="休日の過ごし方">自宅だけでなく気分転換を兼ねてカフェで過ごすことが多い。午前中は比較的静かなカフェを探して資格勉強や副業の作業を行い、集中できる環境を重視して場所を選ぶ。昼頃には軽く食事をとり、そのまま数時間作業を続けることもあるが、混雑してきた場合は別のカフェへ移動するなど、場所を変えながら効率よく時間を使う。作業の合間にはスマホで次の作業場所を探したり、SNSやレビューをチェックするなど、常により良い環境を求めて行動している。夕方以降は作業を切り上げ、リラックス目的で別のカフェや自宅でゆっくり過ごすことが多い。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">趣味・関心事 <span class="required">必須</span></div>
           <div class="fill-hint">興味のある分野・趣味</div>
           <div class="fill-content">
-            <p>（趣味・関心事を記載）</p>
+            <textarea class="doc-text-input" id="hobbies" rows="7" aria-label="趣味・関心事">カフェ巡り
+YouTube・動画視聴
+SNS閲覧（トレンド・カフェ情報）
+友人との食事
+ガジェットや便利アプリ</textarea>
           </div>
         </div>
 
@@ -104,7 +115,16 @@
           <div class="fill-label">使用デバイス・サービス <span class="required">必須</span></div>
           <div class="fill-hint">日常的に使用するデバイス、SNS、Webサービス</div>
           <div class="fill-content">
-            <p>（デジタル行動を記載）</p>
+            <p><strong>デバイス</strong></p>
+            <p>・iPhone（メイン端末）</p>
+            <p>・ノートPC（大学課題・作業用）</p>
+            <p>・ワイヤレスイヤホン</p>
+            <p><strong>サービス</strong></p>
+            <p>・Instagram（カフェ情報・友人との交流）</p>
+            <p>・Googleマップ（カフェ検索）</p>
+            <p>・YouTube（情報収集・娯楽）</p>
+            <p>・LINE（連絡）</p>
+            <p>・Notion / Googleドキュメント（課題・メモ）</p>
           </div>
         </div>
 
@@ -117,14 +137,17 @@
           <div class="fill-label">抱えている課題・悩み <span class="required">必須</span></div>
           <div class="fill-hint">このペルソナが日常で抱えている課題（サービスに関連するもの）</div>
           <div class="fill-content">
-            <p>（課題を記載）</p>
+            <textarea class="doc-text-input" id="persona-issues" rows="6" aria-label="抱えている課題・悩み">作業や勉強に適したカフェを探すのに時間がかかる。
+Wi-Fiや電源、席の広さ、静かさなど作業環境の情報が事前に分かりにくい。
+実際に行ってみないと作業しやすいか判断できない。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">サービスに期待すること <span class="required">必須</span></div>
           <div class="fill-hint">このペルソナが（サービス名）に期待する価値</div>
           <div class="fill-content">
-            <p>（期待することを記載）</p>
+            <textarea class="doc-text-input" id="service-expectations" rows="6" aria-label="サービスに期待すること">Wi-Fi・電源・静かさ・長時間利用可など作業環境の条件でカフェを簡単に検索できる。事前に作業しやすい環境が分かり、無駄な移動や時間を減らせる。
+自分の用途（勉強・レポート・PC作業）に合うカフェをすぐ見つけられる。</textarea>
           </div>
         </div>
 
@@ -137,14 +160,14 @@
             <div class="fill-label">カスタマージャーニーマップ <span class="required">必須</span></div>
             <div class="fill-hint">ペルソナがサービスを認知してから利用・共有するまでの行動を時系列で記載</div>
 
-        <table class="doc-table">
-          <thead><tr><th>段階</th><th>行動</th><th>接点（タッチポイント）</th><th>感情</th><th>課題・機会</th></tr></thead>
+        <table class="doc-table journey-table">
+          <thead><tr><th>段階</th><th>行動</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td><strong>認知</strong></td><td>（どうやって知るか）</td><td>（SNS/検索/口コミ等）</td><td>（🤔 等）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>興味</strong></td><td>（何に興味を持つか）</td><td>（Webサイト/LP等）</td><td>（😊 等）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>比較検討</strong></td><td>（何と比較するか）</td><td>（口コミ/比較サイト等）</td><td>（🤨 等）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>行動</strong></td><td>（申込/購入/登録等）</td><td>（フォーム/アプリ等）</td><td>（😃 等）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>共有・継続</strong></td><td>（口コミ/リピート等）</td><td>（SNS/メール等）</td><td>（😍 等）</td><td>（記載）</td></tr>
+          <tr class="template-row"><td><strong>認知</strong></td><td>SNSや検索で「勉強できるカフェ」「作業カフェ」などを検索する友人やSNS投稿で作業向けカフェの情報を知る大学や街中でカフェ情報を見かける</td></tr>
+          <tr class="template-row"><td><strong>興味</strong></td><td>Wi-Fi・電源があるカフェを探し始める<br>作業しやすい環境のカフェがあることに興味を持つ<br>サイトやSNS投稿を見て「便利そう」と感じる</td></tr>
+          <tr class="template-row"><td><strong>比較検討</strong></td><td>Googleマップやカフェレビューサイトと比較する<br>Wi-Fi、電源席、席の広さ、静かさなどの条件を確認する<br>口コミや評価をチェックする</td></tr>
+          <tr class="template-row"><td><strong>行動</strong></td><td>サイトで条件検索をしてカフェを探す<br>気になったカフェを保存または訪問する<br>実際にそのカフェに行き作業・勉強をする</td></tr>
+          <tr class="template-row"><td><strong>共有・継続</strong></td><td>SNSでカフェ情報をシェアする<br>レビューや口コミを投稿する<br>友人におすすめの作業カフェとして紹介する</td></tr>
           </tbody>
         </table>
 

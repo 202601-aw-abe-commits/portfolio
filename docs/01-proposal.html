@@ -64,21 +64,22 @@
           <div class="fill-label">サービス名 <span class="required">必須</span></div>
           <div class="fill-hint">制作するWebサービスの名前</div>
           <div class="fill-content">
-            <p>（サービス名を入力）</p>
+            <input type="text" class="doc-text-input" id="service-name" value="カフェナビ" aria-label="サービス名">
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">コンセプト <span class="required">必須</span></div>
           <div class="fill-hint">サービスを一言で表す説明（キャッチコピー＋1〜2文の説明）</div>
           <div class="fill-content">
-            <p>（キャッチコピーとコンセプト説明を入力）</p>
+            <input type="text" class="doc-text-input" id="concept" value="学生のためのカフェ検索サービス。" aria-label="コンセプト">
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">ターゲットユーザー <span class="required">必須</span></div>
           <div class="fill-hint">このサービスを使う主なユーザー像（概要レベル）</div>
           <div class="fill-content">
-            <p>（ターゲットユーザーの概要を入力）</p>
+            <textarea class="doc-text-input" id="target-user" rows="3" aria-label="ターゲットユーザー">年齢層/ 高校生、大学生
+職業/学生</textarea>
           </div>
         </div>
 
@@ -91,14 +92,17 @@
           <div class="fill-label">市場の現状 <span class="required">必須</span></div>
           <div class="fill-hint">このサービスが存在する市場の現状と課題</div>
           <div class="fill-content">
-            <p>（市場の現状を記載）</p>
+            <textarea class="doc-text-input" id="market-status" rows="9" aria-label="市場の現状">近年、日本のカフェ市場は拡大傾向にあり、カフェ・喫茶店を含む市場規模は約1兆円規模とされている。特にコロナ禍以降、テレワークやフリーランスの増加により、カフェを「作業場所」として利用する人が増えている。
+またWi-Fiや電源コンセントを備えたカフェ、長時間滞在が可能なカフェなど、作業環境を重視した店舗の需要も高まっている。
+一方で、作業に適したカフェを探す際には「Wi-Fiの有無」「電源席の有無」「混雑状況」「長時間利用の可否」などの情報が分かりにくいという課題がある。そのため、作業環境の条件からカフェを検索できるサービスへのニーズが高まっている。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">解決すべき課題 <span class="required">必須</span></div>
           <div class="fill-hint">本プロジェクトで解決を目指す具体的な課題（3つ程度）</div>
           <div class="fill-content">
-            <p>（課題を3つ入力）</p>
+            <textarea class="doc-text-input" id="issues-to-solve" rows="5" aria-label="解決すべき課題">作業環境に適した店舗を見つけることの難しさ
+「Wi-Fiの有無」「電源席の有無」「席の広さ」「混雑状況」「長時間利用の可否」</textarea>
           </div>
         </div>
 
@@ -111,7 +115,9 @@
           <div class="fill-label">サービスの特長 <span class="required">必須</span></div>
           <div class="fill-hint">競合と差別化するサービスの特長を3つ</div>
           <div class="fill-content">
-            <p>（サービスの特長を3つ記載）</p>
+            <textarea class="doc-text-input" id="service-features" rows="5" aria-label="サービスの特長">1 勉強・作業向けカフェに特化した検索機能
+2 作業環境の条件で絞り込み検索が可能
+3 学生目線のカフェ情報を掲載</textarea>
           </div>
         </div>
 
@@ -124,14 +130,14 @@
           <div class="fill-label">Webサイト（フロントエンド）の範囲 <span class="required">必須</span></div>
           <div class="fill-hint">制作するWebサイトのページ一覧と概要</div>
           <div class="fill-content">
-            <p>（Webサイトのページ一覧を記載）</p>
+            <textarea class="doc-text-input" id="frontend-scope" rows="6" aria-label="Webサイト（フロントエンド）の範囲">本Webサイトでは、ユーザーが自分の目的や好みに合ったカフェを検索・比較・閲覧できるサービス画面を制作範囲とする。主に、カフェ検索、詳細情報の閲覧、お気に入り保存、口コミ閲覧など、ユーザーが快適に店舗を探せるためのフロント機能を対象とする。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">Webアプリケーション（サーバーサイド）の範囲 <span class="required">必須</span></div>
           <div class="fill-hint">制作するWebアプリケーションの機能概要</div>
           <div class="fill-content">
-            <p>（Webアプリの機能一覧を記載）</p>
+            <textarea class="doc-text-input" id="backend-scope" rows="7" aria-label="Webアプリケーション（サーバーサイド）の範囲">本Webアプリケーションでは、ユーザー認証、会員情報管理、カフェ情報の登録・更新・取得、検索条件に応じた店舗情報の抽出、お気に入り管理、口コミ・レビュー投稿機能を実装する。さらに、これらの情報をデータベースで一元管理し、フロントエンドへ適切に提供するサーバーサイド処理を構築する。</textarea>
           </div>
         </div>
 
@@ -144,15 +150,13 @@
         <table class="doc-table">
           <thead><tr><th>区分</th><th>技術</th><th>用途</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>フロントエンド</td><td>HTML / CSS / JavaScript</td><td>Webサイト構築</td></tr>
-          <tr class="template-row"><td>CSSフレームワーク</td><td>（Tailwind CSS 等）</td><td>スタイリング効率化</td></tr>
-          <tr class="template-row"><td>バックエンド</td><td>Java / Spring Boot</td><td>Webアプリケーション</td></tr>
-          <tr class="template-row"><td>テンプレートエンジン</td><td>Thymeleaf</td><td>画面表示</td></tr>
-          <tr class="template-row"><td>O/Rマッピング</td><td>MyBatis</td><td>データベース操作</td></tr>
-          <tr class="template-row"><td>データベース</td><td>（MySQL / H2 等）</td><td>データ永続化</td></tr>
-          <tr class="template-row"><td>デザインツール</td><td>Figma</td><td>ワイヤーフレーム・モックアップ</td></tr>
-          <tr class="template-row"><td>バージョン管理</td><td>Git / GitHub</td><td>ソースコード管理・公開</td></tr>
-          <tr class="template-row"><td>AI活用</td><td>ChatGPT / Claude</td><td>プロンプトプログラミング</td></tr>
+          <tr><td>フロントエンド</td><td>HTML・CSS・JavaScript</td><td>Webサイト構築</td></tr>
+          <tr><td>CSSフレームワーク</td><td>（Tailwind CSS 等）</td><td>スタイリング効率化</td></tr>
+          <tr><td>バックエンド</td><td>Java / Spring Boot</td><td>Webアプリケーション</td></tr>
+          <tr><td>データベース</td><td>（MySQL / H2 等）</td><td>データ永続化</td></tr>
+          <tr><td>デザインツール</td><td>Figma</td><td>ワイヤーフレーム・モックアップ</td></tr>
+          <tr><td>バージョン管理</td><td>Git / GitHub</td><td>ソースコード管理・公開</td></tr>
+          <tr><td>AI活用</td><td>ChatGPT / Claude</td><td>プロンプトプログラミング</td></tr>
           </tbody>
         </table>
 
@@ -164,18 +168,10 @@
         <table class="doc-table">
           <thead><tr><th>期間</th><th>フェーズ</th><th>内容</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>Day 1〜3</td><td>企画</td><td>マーケットリサーチ・企画立案</td></tr>
-          <tr class="template-row"><td>Day 4〜5</td><td>設計</td><td>ペルソナ・サイトマップ設計</td></tr>
-          <tr class="template-row"><td>Day 6〜7</td><td>デザイン</td><td>ワイヤーフレーム・デザインガイドライン</td></tr>
-          <tr class="template-row"><td>Day 8〜12</td><td>フロント実装</td><td>HTML/CSS/JavaScript によるWebサイト構築</td></tr>
-          <tr class="template-row"><td>Day 13〜14</td><td>プロジェクトアーカイブ構築</td><td>プロジェクトアーカイブサイト・ドキュメント配置</td></tr>
-          <tr class="template-row"><td>Day 15〜16</td><td>前半完了</td><td>GitHub Pages 公開・前半振り返り</td></tr>
-          <tr class="template-row"><td>Day 17〜19</td><td>バックエンド設計</td><td>仕様書・DB設計書作成</td></tr>
-          <tr class="template-row"><td>Day 20〜24</td><td>バックエンド実装</td><td>Spring Boot アプリケーション開発</td></tr>
-          <tr class="template-row"><td>Day 25〜27</td><td>追加機能</td><td>検索・認証・追加機能の実装</td></tr>
-          <tr class="template-row"><td>Day 28〜29</td><td>テスト</td><td>テスト実施・バグ修正</td></tr>
-          <tr class="template-row"><td>Day 30〜31</td><td>ドキュメント</td><td>振り返り・技術記事・最終調整</td></tr>
-          <tr class="template-row"><td>Day 32</td><td>最終提出</td><td>プロジェクトアーカイブ最終版公開</td></tr>
+          <tr><td>2週間</td><td>企画・設計</td><td>企画・設計</td></tr>
+          <tr><td>2〜3週間</td><td>デザイン制作</td><td>サイトデザイン、UI設計</td></tr>
+          <tr><td>4〜6週間</td><td>システム開発</td><td>システム開発</td></tr>
+          <tr><td>1〜2週間</td><td>テスト・改善</td><td>動く</td></tr>
           </tbody>
         </table>
 

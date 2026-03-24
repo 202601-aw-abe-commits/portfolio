@@ -63,21 +63,21 @@
           <div class="fill-label">Customer（顧客） <span class="required">必須</span></div>
           <div class="fill-hint">ターゲット顧客の特徴・ニーズ・行動パターン</div>
           <div class="fill-content">
-            <p>（顧客分析を記載）</p>
+            <textarea class="doc-text-input" id="customer-analysis" rows="10" aria-label="Customer（顧客）">カフェナビのターゲット顧客は、リモートワーカーや学生、副業・自己学習を行う社会人など、カフェを「飲食」ではなく作業場所として利用する人たちである。彼らはWi-Fiや電源、静かさといった作業環境の質を重視し、現在地から条件に合うカフェを素早く見つけたいというニーズを持つ。また、作業に適しているかどうかを一目で判断できる分かりやすい情報や、信頼できる最新のレビューを求めている。行動としては、GoogleマップやSNSなどで検索し、その場で最適な場所を選ぶ傾向が強い。一方で、実際に行ってみないと分からない・情報が古いといった課題を感じており、正確で実用的な情報へのニーズが高い。したがって、作業環境に特化した検索性と情報の分かりやすさが重要となる。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">Competitor（競合） <span class="required">必須</span></div>
           <div class="fill-hint">競合サービスの特徴・強み・弱み</div>
           <div class="fill-content">
-            <p>（競合分析を記載）</p>
+            <textarea class="doc-text-input" id="competitor-analysis" rows="10" aria-label="Competitor（競合）">競合サービスであるGoogleマップや食べログなどは、掲載店舗数の多さや知名度の高さ、口コミの豊富さが強みであり、ユーザーが日常的に利用している点で非常に優位である。一方で、カフェを「作業場所」として探すための情報（Wi-Fi・電源・静かさなど）が整理されておらず、目的に合った店舗を見つけにくいという弱みがある。また、レビューも飲食中心で作業視点の情報が少ないため、実際に行ってみないと分からないケースが多い。そのため、作業用途に特化した検索性や情報の分かりやすさという点では不十分であり、ここにカフェナビが差別化できる余地がある。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">Company（自社） <span class="required">必須</span></div>
           <div class="fill-hint">自分のサービスの強み・提供できる価値</div>
           <div class="fill-content">
-            <p>（自社分析を記載）</p>
+            <textarea class="doc-text-input" id="company-analysis" rows="10" aria-label="Company（自社）">カフェナビ（自社）の強み・提供できる価値は、ユーザーが「今行きたいカフェ」をスムーズに見つけられる点にあります。位置情報や利用シーン（作業・デート・一人時間など）に応じて最適なカフェを提案できるため、探す手間を大幅に削減できます。さらに、雰囲気や設備（Wi-Fi・電源・静かさなど）といった細かなニーズにも対応できる点が強みです。口コミや写真を通じてリアルな情報を得られることで、来店前の不安を軽減します。加えて、個々の好みに合わせたレコメンド機能により、新しいカフェとの出会いも提供できます。結果として、ユーザーのカフェ体験そのものの満足度を高める価値を持っています。</textarea>
           </div>
         </div>
 
@@ -86,15 +86,23 @@
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> SWOT分析</h2>
 
-          <div class="fill-block">
+          <div class="fill-block swot-block">
             <div class="fill-label">SWOT分析マトリクス <span class="required">必須</span></div>
             <div class="fill-hint">Strengths（強み）・Weaknesses（弱み）・Opportunities（機会）・Threats（脅威）</div>
 
-        <table class="doc-table">
+        <table class="doc-table swot-table">
           <thead><tr><th></th><th>プラス要因</th><th>マイナス要因</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td><strong>内部環境</strong></td><td><strong>Strengths（強み）</strong><br>（3つ以上記載）</td><td><strong>Weaknesses（弱み）</strong><br>（3つ以上記載）</td></tr>
-          <tr class="template-row"><td><strong>外部環境</strong></td><td><strong>Opportunities（機会）</strong><br>（3つ以上記載）</td><td><strong>Threats（脅威）</strong><br>（3つ以上記載）</td></tr>
+          <tr class="template-row"><td><strong>内部環境</strong></td><td><strong>Strengths（強み）</strong><br><textarea class="doc-text-input doc-table-input" id="swot-strengths" rows="5" aria-label="Strengths（強み）">1 シンプルで使いやすいUI設計ができる
+2 カフェ利用経験があり、ユーザー目線でニーズを理解している
+3 作業環境（Wi-Fi・電源・静かさなど）をスコア化する独自の差別化がある</textarea></td><td><strong>Weaknesses（弱み）</strong><br><textarea class="doc-text-input doc-table-input" id="swot-weaknesses" rows="5" aria-label="Weaknesses（弱み）">1 店舗情報の更新・管理に手間がかかる
+2 マーケティング実務の経験が不足している
+3 資金やリソースが限られている（低予算運営）</textarea></td></tr>
+          <tr class="template-row"><td><strong>外部環境</strong></td><td><strong>Opportunities（機会）</strong><br><textarea class="doc-text-input doc-table-input" id="swot-opportunities" rows="5" aria-label="Opportunities（機会）">1 リモートワークやオンライン学習の普及により、作業できるカフェ需要が増加している
+2 位置情報技術の発展により、現在地からの店舗検索ニーズが高まっている
+3 副業・フリーランス増加により、カフェ作業ユーザーが増えている</textarea></td><td><strong>Threats（脅威）</strong><br><textarea class="doc-text-input doc-table-input" id="swot-threats" rows="5" aria-label="Threats（脅威）">1 Googleマップや食べログなどの大手競合が既に存在している
+2 カフェ情報の変化（営業時間・閉店など）により情報が古くなりやすい
+3 SNSやブログで情報収集するユーザーが増え、検索サービスを使わない可能性がある</textarea></td></tr>
           </tbody>
         </table>
 
@@ -108,21 +116,21 @@
           <div class="fill-label">Segmentation（市場細分化） <span class="required">必須</span></div>
           <div class="fill-hint">市場をどのような基準で分類するか</div>
           <div class="fill-content">
-            <p>（セグメンテーションを記載）</p>
+            <textarea class="doc-text-input" id="segmentation" rows="8" aria-label="Segmentation（市場細分化）">まず「利用目的」で分けると、作業・勉強目的、休憩・雑談目的、デート・雰囲気重視などに分類できる。次に「ライフスタイル・職業」では、リモートワーカー、フリーランス、学生、会社員などに分けられる。また「利用シーン・状況」として、外出先で急いで探す人、長時間滞在したい人、移動中に一時利用する人などの違いがある。さらに「重視する条件」によって、Wi-Fi・電源重視、静かさ重視、立地重視などの軸でも分類可能である。これらの基準により、カフェ利用者を多角的に細分化することができる。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">Targeting（ターゲット選定） <span class="required">必須</span></div>
           <div class="fill-hint">どのセグメントを狙うか、その理由</div>
           <div class="fill-content">
-            <p>（ターゲティングを記載）</p>
+            <textarea class="doc-text-input" id="targeting" rows="8" aria-label="Targeting（ターゲット選定）">カフェナビのターゲットは、「作業・勉強目的でカフェを利用するリモートワーカー、フリーランス、学生などの層」に設定する。このセグメントはWi-Fi・電源・静かさといった明確なニーズを持っており、一般的なカフェ検索サービスでは十分に満たされていないため、差別化しやすい。また、リモートワークや副業の普及により市場自体が拡大しており、継続的な利用も見込める。さらに、利用頻度が高くリピート性もあるため、サービスの成長や口コミ拡散にもつながりやすい点から、このセグメントを優先的に狙うべきである。</textarea>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">Positioning（ポジショニング） <span class="required">必須</span></div>
           <div class="fill-hint">競合に対してどのような位置づけを取るか</div>
           <div class="fill-content">
-            <p>（ポジショニングを記載）</p>
+            <textarea class="doc-text-input" id="positioning" rows="8" aria-label="Positioning（ポジショニング）">カフェナビは、Googleマップや食べログのような「網羅型の店舗検索サービス」に対して、「作業環境に特化したカフェ検索サービス」としてポジショニングを取る。競合が飲食や立地、口コミの量を重視しているのに対し、カフェナビはWi-Fi・電源・静かさ・作業しやすさといった実用的な指標を可視化し、ユーザーが一目で判断できる点で差別化する。また、作業目的のユーザーに特化することで、専門性と検索精度の高さを強みとし、「作業できるカフェを探すならこれ」という明確なポジションを確立する。</textarea>
           </div>
         </div>
 
@@ -136,10 +144,18 @@
         <table class="doc-table">
           <thead><tr><th>4P（売り手視点）</th><th>内容</th><th>4C（買い手視点）</th><th>内容</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td><strong>Product</strong><br>（製品）</td><td>（記載）</td><td><strong>Customer Value</strong><br>（顧客価値）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>Price</strong><br>（価格）</td><td>（記載）</td><td><strong>Cost</strong><br>（顧客コスト）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>Place</strong><br>（流通）</td><td>（記載）</td><td><strong>Convenience</strong><br>（利便性）</td><td>（記載）</td></tr>
-          <tr class="template-row"><td><strong>Promotion</strong><br>（販促）</td><td>（記載）</td><td><strong>Communication</strong><br>（対話）</td><td>（記載）</td></tr>
+          <tr class="template-row"><td><strong>Product</strong><br>（製品）</td><td><textarea class="doc-text-input doc-table-input" id="fourp-product" rows="5" aria-label="Product（製品）">勉強・作業に適したカフェを検索できるWebサービス。
+Wi-Fi・電源・席の広さ・静かさ・長時間利用の可否などの条件で絞り込み検索が可能</textarea></td><td><strong>Customer Value</strong><br>（顧客価値）</td><td><textarea class="doc-text-input doc-table-input" id="fourc-customer-value" rows="4" aria-label="Customer Value（顧客価値）">勉強・作業に適したカフェを効率よく見つけられる。自分の目的に合った環境のカフェを事前に確認できる</textarea></td></tr>
+          <tr class="template-row"><td><strong>Price</strong><br>（価格）</td><td><textarea class="doc-text-input doc-table-input" id="fourp-price" rows="4" aria-label="Price（価格）">基本利用は無料。
+将来的に店舗掲載の有料プランや広告掲載で収益化を検討</textarea></td><td><strong>Cost</strong><br>（顧客コスト）</td><td><textarea class="doc-text-input doc-table-input" id="fourc-cost" rows="4" aria-label="Cost（顧客コスト）">サービス利用は無料。
+カフェ利用料金のみが発生するため低コストで利用できる。</textarea></td></tr>
+          <tr class="template-row"><td><strong>Place</strong><br>（流通）</td><td><textarea class="doc-text-input doc-table-input" id="fourp-place" rows="4" aria-label="Place（流通）">Webブラウザで利用可能。
+スマートフォン・PCからアクセスでき、外出先でも利用できる。</textarea></td><td><strong>Convenience</strong><br>（利便性）</td><td><textarea class="doc-text-input doc-table-input" id="fourc-convenience" rows="4" aria-label="Convenience（利便性）">スマートフォンから簡単に検索可能。
+条件検索により自分に合ったカフェを短時間で見つけられる。</textarea></td></tr>
+          <tr class="template-row"><td><strong>Promotion</strong><br>（販促）</td><td><textarea class="doc-text-input doc-table-input" id="fourp-promotion" rows="5" aria-label="Promotion（販促）">SNS（Instagram・TikTok・X）での情報発信。
+SEO対策による検索流入。
+学生コミュニティや大学周辺での認知拡大</textarea></td><td><strong>Communication</strong><br>（対話）</td><td><textarea class="doc-text-input doc-table-input" id="fourc-communication" rows="4" aria-label="Communication（対話）">SNSやレビューを通じてユーザーと情報共有が可能。
+利用者の口コミや評価を参考にカフェを選べる</textarea></td></tr>
           </tbody>
         </table>
 
@@ -154,22 +170,24 @@
           <div class="fill-label">競合サイト 1 <span class="required">必須</span></div>
           <div class="fill-hint">サイト名・URL・スクリーンショット・分析</div>
           <div class="fill-content">
-            <p>（競合サイト1の分析を記載）
-（スクリーンショットを配置：&lt;img src=&quot;../images/competitor1.png&quot; alt=&quot;競合サイト1&quot;&gt;）</p>
+            <input type="text" class="doc-text-input" id="competitor-site-name-1" value="電源カフェ" aria-label="競合サイト1のサイト名">
+            <a href="https://dengen-cafe.com/" target="_blank" rel="noopener noreferrer">https://dengen-cafe.com/</a>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">競合サイト 2 <span class="required">必須</span></div>
           <div class="fill-hint">サイト名・URL・スクリーンショット・分析</div>
           <div class="fill-content">
-            <p>（競合サイト2の分析を記載）</p>
+            <input type="text" class="doc-text-input" id="competitor-site-name-2" value="ノマドなび" aria-label="競合サイト2のサイト名">
+            <a href="https://nomad-navi.com/" target="_blank" rel="noopener noreferrer">https://nomad-navi.com/</a>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">競合サイト 3 <span class="required">必須</span></div>
           <div class="fill-hint">サイト名・URL・スクリーンショット・分析</div>
           <div class="fill-content">
-            <p>（競合サイト3の分析を記載）</p>
+            <input type="text" class="doc-text-input" id="competitor-site-name-3" value="食べログ" aria-label="競合サイト3のサイト名">
+            <a href="https://tabelog.com/" target="_blank" rel="noopener noreferrer">https://tabelog.com/</a>
           </div>
         </div>
 
