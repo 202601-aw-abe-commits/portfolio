@@ -1,5 +1,19 @@
 //  プロジェクトアーカイブ 共通JS
 
+// 公開中ページの制御
+// 復活するときは `true` に戻してください。
+const visibleSections = {
+  top: true,
+  about: true,
+  works: true,
+  process: false,
+  skills: false,
+  contact: false,
+  documents: false,
+  design: false,
+  prompts: false
+};
+
 // ナビゲーション生成関数
 function generateNavigation() {
   const sidebar = document.querySelector('.sidebar');
@@ -39,13 +53,14 @@ function generateNavigation() {
     <nav class="sidebar-nav">
       <div class="nav-group">
         <div class="nav-group-title">プロジェクト</div>
-        <a href="${rootPath}index.html"><span class="material-symbols-outlined icon-sm">home</span> トップページ</a>
-        <a href="${rootPath}about.html"><span class="material-symbols-outlined icon-sm">person</span> 自己紹介</a>
-        <a href="${rootPath}works.html"><span class="material-symbols-outlined icon-sm">work</span> 制作物一覧</a>
-        <a href="${rootPath}process.html"><span class="material-symbols-outlined icon-sm">assignment</span> 制作プロセス</a>
-        <a href="${rootPath}skills.html"><span class="material-symbols-outlined icon-sm">bolt</span> スキルシート</a>
-        <a href="${rootPath}contact.html"><span class="material-symbols-outlined icon-sm">mail</span> お問い合わせ</a>
+        ${visibleSections.top ? `<a href="${rootPath}index.html"><span class="material-symbols-outlined icon-sm">home</span> トップページ</a>` : ''}
+        ${visibleSections.about ? `<a href="${rootPath}about.html"><span class="material-symbols-outlined icon-sm">person</span> 自己紹介</a>` : ''}
+        ${visibleSections.works ? `<a href="${rootPath}works.html"><span class="material-symbols-outlined icon-sm">work</span> 制作物一覧</a>` : ''}
+        ${visibleSections.process ? `<a href="${rootPath}process.html"><span class="material-symbols-outlined icon-sm">assignment</span> 制作プロセス</a>` : ''}
+        ${visibleSections.skills ? `<a href="${rootPath}skills.html"><span class="material-symbols-outlined icon-sm">bolt</span> スキルシート</a>` : ''}
+        ${visibleSections.contact ? `<a href="${rootPath}contact.html"><span class="material-symbols-outlined icon-sm">mail</span> お問い合わせ</a>` : ''}
       </div>
+      ${visibleSections.documents ? `
       <div class="nav-group">
         <div class="nav-group-title">制作ドキュメント</div>
         <a href="${docsPath}01-proposal.html"><span class="nav-number">01</span> 企画提案書</a>
@@ -55,7 +70,8 @@ function generateNavigation() {
         <a href="${docsPath}05-wireframe.html"><span class="nav-number">05</span> ワイヤーフレーム</a>
         <a href="${docsPath}06-design-guide.html"><span class="nav-number">06</span> デザインガイドライン</a>
         <a href="${docsPath}10-retrospective.html"><span class="nav-number">10</span> 振り返り・技術記事</a>
-      </div>
+      </div>` : ''}
+      ${visibleSections.design ? `
       <div class="nav-group">
         <div class="nav-group-title">設計資料</div>
         <a href="${docsPath}07-specification.html"><span class="nav-number">07</span> 仕様書</a>
@@ -65,13 +81,14 @@ function generateNavigation() {
         <a href="${designPath}class-diagram.html"><span class="material-symbols-outlined icon-sm">lan</span> クラス構成図</a>
         <a href="${designPath}method-list.html"><span class="material-symbols-outlined icon-sm">list_alt</span> メソッド一覧</a>
         <a href="${designPath}logic-explanation.html"><span class="material-symbols-outlined icon-sm">search</span> ロジック解説</a>
-      </div>
+      </div>` : ''}
+      ${visibleSections.prompts ? `
       <div class="nav-group">
         <div class="nav-group-title">プロンプト</div>
         <a href="${promptsPath}prompt-step.html"><span class="material-symbols-outlined icon-sm">format_list_numbered</span> ステップ別プロンプト</a>
         <a href="${promptsPath}prompt-function.html"><span class="material-symbols-outlined icon-sm">extension</span> 機能追加別プロンプト</a>
         <a href="${promptsPath}prompt-log.html"><span class="material-symbols-outlined icon-sm">history</span> 実行ログ</a>
-      </div>
+      </div>` : ''}
     </nav>
     <div class="sidebar-footer">
       &copy; Project Archive 2026
