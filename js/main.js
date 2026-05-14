@@ -7,10 +7,10 @@ const visibleSections = {
   about: true,
   works: true,
   process: false,
-  skills: false,
+  skills: true,
   contact: false,
-  documents: false,
-  design: false,
+  documents: true,
+  design: true,
   prompts: false
 };
 

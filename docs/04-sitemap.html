@@ -61,14 +61,50 @@
           <div class="fill-label">Webサイト構造図 <span class="required">必須</span></div>
           <div class="fill-hint">トップページから下層ページまでの階層構造をツリー形式で記載</div>
           <div class="fill-content">
-            <p>（ツリー形式のサイト構造図を記載）</p>
+            <pre>トップページ
+├─ カフェを探す
+│  ├─ エリアから探す
+│  ├─ 現在地から探す
+│  ├─ 条件から探す
+│  └─ 検索結果一覧
+│      └─ カフェ詳細ページ
+├─ おすすめカフェ
+│  ├─ 人気ランキング
+│  └─ 特集記事
+├─ カフェ投稿
+│  ├─ 投稿フォーム
+│  └─ 投稿完了ページ
+├─ お気に入り
+├─ お知らせ
+├─ サイトについて
+└─ お問い合わせ</pre>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">Webアプリケーション構造図 <span class="required">必須</span></div>
           <div class="fill-hint">Spring Bootアプリケーションの画面構造をツリー形式で記載</div>
           <div class="fill-content">
-            <p>（ツリー形式のアプリ構造図を記載）</p>
+            <pre>Spring Bootアプリケーション
+├─ トップ画面
+├─ カフェ検索画面
+│  ├─ エリア検索画面
+│  ├─ 条件検索画面
+│  └─ 検索結果一覧画面
+│      └─ カフェ詳細画面
+├─ おすすめカフェ画面
+│  ├─ ランキング画面
+│  └─ 特集記事詳細画面
+├─ カフェ投稿画面
+│  ├─ 投稿内容確認画面
+│  └─ 投稿完了画面
+├─ お気に入り画面
+├─ お知らせ一覧画面
+│  └─ お知らせ詳細画面
+├─ サイト情報画面
+└─ お問い合わせ画面
+   ├─ 入力画面
+   ├─ 確認画面
+   └─ 完了画面</pre>
           </div>
         </div>
 
@@ -82,10 +118,16 @@
         <table class="doc-table">
           <thead><tr><th>No.</th><th>ページ名</th><th>ページの目的</th><th>主要コンテンツ</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>1</td><td>（トップページ）</td><td>（サービスの魅力を伝え、各ページへ誘導）</td><td>（ヒーロー、サービス紹介、CTA等）</td></tr>
-          <tr class="template-row"><td>2</td><td>（ページ名）</td><td>（目的を記載）</td><td>（コンテンツを記載）</td></tr>
-          <tr class="template-row"><td>3</td><td>（ページ名）</td><td>（目的を記載）</td><td>（コンテンツを記載）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>1</td><td>トップページ</td><td>サービスの魅力を伝え、各ページへ誘導する</td><td>ヒーロー画像、サービス紹介、検索バー、おすすめカフェ、CTAボタン</td></tr>
+          <tr><td>2</td><td>カフェ検索ページ</td><td>条件に合ったカフェを探せるようにする</td><td>エリア検索、条件フィルタ、検索フォーム</td></tr>
+          <tr><td>3</td><td>検索結果一覧ページ</td><td>検索条件に一致するカフェを一覧表示する</td><td>カフェ一覧、サムネイル画像、評価、営業時間</td></tr>
+          <tr><td>4</td><td>カフェ詳細ページ</td><td>カフェの詳細情報を提供する</td><td>店舗情報、メニュー、写真、地図、レビュー</td></tr>
+          <tr><td>5</td><td>おすすめカフェページ</td><td>人気や特集のカフェを紹介する</td><td>ランキング、特集記事、ピックアップ店舗</td></tr>
+          <tr><td>6</td><td>カフェ投稿ページ</td><td>ユーザーがカフェ情報を投稿できるようにする</td><td>投稿フォーム、画像アップロード、入力項目</td></tr>
+          <tr><td>7</td><td>お気に入りページ</td><td>保存したカフェを管理・閲覧できるようにする</td><td>お気に入り一覧、削除機能、詳細リンク</td></tr>
+          <tr><td>8</td><td>お知らせページ</td><td>サイトからの最新情報を掲載する</td><td>お知らせ一覧、更新情報、キャンペーン情報</td></tr>
+          <tr><td>9</td><td>サイトについてページ</td><td>サービス概要や利用目的を説明する</td><td>サービス説明、運営情報、利用方法</td></tr>
+          <tr><td>10</td><td>お問い合わせページ</td><td>ユーザーからの問い合わせを受け付ける</td><td>入力フォーム、FAQ、送信ボタン</td></tr>
           </tbody>
         </table>
 
@@ -96,10 +138,18 @@
         <table class="doc-table">
           <thead><tr><th>No.</th><th>画面名</th><th>画面の目的</th><th>主要機能</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>1</td><td>（ログイン画面）</td><td>（ユーザー認証）</td><td>（メールアドレス/パスワード入力）</td></tr>
-          <tr class="template-row"><td>2</td><td>（一覧画面）</td><td>（データの一覧表示）</td><td>（検索・ソート・ページネーション）</td></tr>
-          <tr class="template-row"><td>3</td><td>（登録画面）</td><td>（新規データ登録）</td><td>（入力フォーム・バリデーション）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>1</td><td>トップ画面</td><td>サービス概要を表示し、各機能へ誘導する</td><td>カフェ検索、特集表示、ナビゲーション</td></tr>
+          <tr><td>2</td><td>カフェ検索画面</td><td>条件に応じたカフェ検索を行う</td><td>エリア検索、キーワード検索、条件フィルタ</td></tr>
+          <tr><td>3</td><td>検索結果一覧画面</td><td>検索結果を一覧表示する</td><td>一覧表示、並び替え、ページネーション</td></tr>
+          <tr><td>4</td><td>カフェ詳細画面</td><td>カフェの詳細情報を表示する</td><td>店舗情報表示、地図表示、レビュー閲覧</td></tr>
+          <tr><td>5</td><td>おすすめカフェ画面</td><td>人気・特集カフェを紹介する</td><td>ランキング表示、特集記事表示</td></tr>
+          <tr><td>6</td><td>カフェ投稿画面</td><td>新規カフェ情報を登録する</td><td>入力フォーム、画像アップロード、バリデーション</td></tr>
+          <tr><td>7</td><td>投稿確認画面</td><td>投稿内容を確認する</td><td>入力内容確認、修正、送信</td></tr>
+          <tr><td>8</td><td>投稿完了画面</td><td>投稿完了を通知する</td><td>完了メッセージ、トップ画面遷移</td></tr>
+          <tr><td>9</td><td>お気に入り画面</td><td>保存したカフェを管理する</td><td>一覧表示、削除、詳細遷移</td></tr>
+          <tr><td>10</td><td>お知らせ一覧画面</td><td>サイトからのお知らせを表示する</td><td>お知らせ一覧、詳細表示</td></tr>
+          <tr><td>11</td><td>お問い合わせ画面</td><td>ユーザーからの問い合わせを受け付ける</td><td>入力フォーム、バリデーション、送信</td></tr>
+          <tr><td>12</td><td>お問い合わせ完了画面</td><td>問い合わせ完了を通知する</td><td>完了メッセージ、トップ画面遷移</td></tr>
           </tbody>
         </table>
 
@@ -113,14 +163,36 @@
           <div class="fill-label">メインシナリオ <span class="required">必須</span></div>
           <div class="fill-hint">ペルソナがサイトに訪問してから目的を達成するまでの動線（メインの行動パターン）</div>
           <div class="fill-content">
-            <p>（メインのユーザーフローを記載）</p>
+            <ol>
+              <li>ユーザーがトップページへアクセス</li>
+              <li>検索フォームからエリアや条件を入力</li>
+              <li>検索結果一覧ページで候補のカフェを確認</li>
+              <li>気になるカフェの詳細ページを閲覧</li>
+              <li>店舗情報やレビューを確認して来店先を決定</li>
+              <li>お気に入り登録を行い、後から再確認できるようにする</li>
+            </ol>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">サブシナリオ <span class="optional">任意</span></div>
           <div class="fill-hint">その他の行動パターン（1〜2パターン）</div>
           <div class="fill-content">
-            <p>（サブシナリオを記載）</p>
+            <h3>サブシナリオ①</h3>
+            <ol>
+              <li>ユーザーがおすすめカフェページへアクセス</li>
+              <li>人気ランキングや特集記事を閲覧</li>
+              <li>気になったカフェ詳細ページへ遷移</li>
+              <li>店舗情報を確認し、お気に入り登録を行う</li>
+            </ol>
+            <hr>
+            <h3>サブシナリオ②</h3>
+            <ol>
+              <li>ユーザーがカフェ投稿ページへアクセス</li>
+              <li>新しいカフェ情報を入力</li>
+              <li>投稿確認画面で内容を確認</li>
+              <li>投稿完了画面で登録完了を確認</li>
+              <li>投稿されたカフェ情報がサイト内へ反映される</li>
+            </ol>
           </div>
         </div>
 
@@ -134,14 +206,23 @@
         <table class="doc-table">
           <thead><tr><th>URL</th><th>HTTPメソッド</th><th>画面/機能</th><th>説明</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>/</td><td>GET</td><td>トップページ</td><td>Webサイトのトップ</td></tr>
-          <tr class="template-row"><td>/about</td><td>GET</td><td>概要ページ</td><td>サービスの概要</td></tr>
-          <tr class="template-row"><td>/app/login</td><td>GET</td><td>ログイン画面</td><td>ログインフォーム表示</td></tr>
-          <tr class="template-row"><td>/app/login</td><td>POST</td><td>ログイン処理</td><td>認証処理</td></tr>
-          <tr class="template-row"><td>/app/items</td><td>GET</td><td>一覧画面</td><td>データ一覧表示</td></tr>
-          <tr class="template-row"><td>/app/items/new</td><td>GET</td><td>新規登録画面</td><td>登録フォーム表示</td></tr>
-          <tr class="template-row"><td>/app/items</td><td>POST</td><td>新規登録処理</td><td>データ保存</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>/</td><td>GET</td><td>トップページ</td><td>Webサイトのトップ画面を表示</td></tr>
+          <tr><td>/cafes</td><td>GET</td><td>カフェ検索画面</td><td>カフェ検索フォームを表示</td></tr>
+          <tr><td>/cafes/search</td><td>GET</td><td>検索結果一覧画面</td><td>条件に一致するカフェ一覧を表示</td></tr>
+          <tr><td>/cafes/{id}</td><td>GET</td><td>カフェ詳細画面</td><td>カフェの詳細情報を表示</td></tr>
+          <tr><td>/recommend</td><td>GET</td><td>おすすめカフェ画面</td><td>人気・特集カフェを表示</td></tr>
+          <tr><td>/favorites</td><td>GET</td><td>お気に入り画面</td><td>お気に入り登録済みカフェ一覧を表示</td></tr>
+          <tr><td>/posts/new</td><td>GET</td><td>カフェ投稿画面</td><td>新規カフェ投稿フォームを表示</td></tr>
+          <tr><td>/posts/confirm</td><td>POST</td><td>投稿確認画面</td><td>入力内容確認を行う</td></tr>
+          <tr><td>/posts</td><td>POST</td><td>投稿登録処理</td><td>カフェ情報を保存する</td></tr>
+          <tr><td>/posts/complete</td><td>GET</td><td>投稿完了画面</td><td>投稿完了メッセージを表示</td></tr>
+          <tr><td>/news</td><td>GET</td><td>お知らせ一覧画面</td><td>お知らせ一覧を表示</td></tr>
+          <tr><td>/news/{id}</td><td>GET</td><td>お知らせ詳細画面</td><td>お知らせ詳細を表示</td></tr>
+          <tr><td>/about</td><td>GET</td><td>サイト情報画面</td><td>サービス概要を表示</td></tr>
+          <tr><td>/contact</td><td>GET</td><td>お問い合わせ画面</td><td>問い合わせフォームを表示</td></tr>
+          <tr><td>/contact/confirm</td><td>POST</td><td>お問い合わせ確認</td><td>入力内容確認を行う</td></tr>
+          <tr><td>/contact/send</td><td>POST</td><td>お問い合わせ送信</td><td>問い合わせ内容を送信</td></tr>
+          <tr><td>/contact/complete</td><td>GET</td><td>お問い合わせ完了画面</td><td>問い合わせ完了を表示</td></tr>
           </tbody>
         </table>
 
