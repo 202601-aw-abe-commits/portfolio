@@ -75,21 +75,46 @@
           <div class="fill-label">フロントエンド実装の振り返り <span class="required">必須</span></div>
           <div class="fill-hint">HTML/CSS/JavaScript の実装について</div>
           <div class="fill-content">
-            <p>（フロントエンド実装の振り返りを記載）</p>
+            <p>HTML/CSS/JavaScript実装では、画面遷移・状態管理・API連携の基本を一通り形にできた点が成果でした。特にJavaScriptでは、fetch を使ったログイン判定・お気に入り追加/解除・ページネーションを実装し、UI状態（ログイン時/未ログイン時）を切り替える流れまで作れました。</p>
+            <p>一方で課題は、画面表示データの一部が静的定義（cafe-detail.js）で、DB/APIと完全同期していない点です。また、検索・ソート・CSV出力など一覧操作の拡張機能は未実装で、今後の改善余地があります。加えて、フロントのバリデーションやエラーハンドリングは最小限のため、入力チェックの統一、メッセージ設計、再利用可能な共通処理化を進める必要があります。</p>
+            <p>今後は、</p>
+            <ol>
+              <li>詳細データもAPI取得へ統一</li>
+              <li>検索/ソートの追加</li>
+              <li>コンポーネント分割とJSの責務整理</li>
+            </ol>
+            <p>を優先し、保守性と拡張性を高めていきます。</p>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">バックエンド実装の振り返り <span class="required">必須</span></div>
           <div class="fill-hint">Java/Spring Boot の実装について</div>
           <div class="fill-content">
-            <p>（バックエンド実装の振り返りを記載）</p>
+            <p>Java/Spring Boot実装では、Controller → Service → Mapper(Repository) → DB の基本レイヤー構成を実践でき、一覧・登録・更新・削除・状態切替までの一連の処理を形にできた点が大きな成果でした。特に、Controllerを薄くしてServiceに処理を寄せる設計、RedirectAttributes を使ったユーザー向けメッセージ返却、MyBatis経由のDB操作など、実務に近い流れを経験できました。</p>
+            <p>一方で課題は、バリデーションと例外処理の標準化です。@Valid/BindingResult を使った統一的な入力検証、グローバル例外ハンドラ（@ControllerAdvice）によるエラーレスポンス統一、ログ設計（監査・障害解析向け）が不足しています。また、認証認可（Spring Security）やテスト自動化（Service/Controller層の単体・結合テスト）も今後の強化ポイントです。</p>
+            <p>今後は、</p>
+            <ol>
+              <li>@Valid ベースの入力検証統一</li>
+              <li>例外処理とログの共通化</li>
+              <li>Spring Security導入（認証・認可）</li>
+              <li>テストコード拡充（回帰防止）</li>
+            </ol>
+            <p>を進め、保守性と信頼性を高めていきます。</p>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">全体を通しての学び <span class="required">必須</span></div>
           <div class="fill-hint">32日間のプロジェクト全体を通して学んだこと</div>
           <div class="fill-content">
-            <p>（全体の振り返りを記載）</p>
+            <p>32日間を通して一番の学びは、機能を作る力だけでなく、要件定義・設計・実装・テスト・改善までを一連で回す力の重要性でした。最初は画面を作ることに意識が寄りがちでしたが、進める中で「誰のどんな課題を解決するのか」を明確にしないと、実装判断や優先順位がぶれることを実感しました。</p>
+            <p>技術面では、フロントエンドとバックエンド、DBをつなぐことで、データ設計やAPI設計が全体品質に直結することを学びました。特に、認証・お気に入り・状態管理のような機能は、単体ではなくシステム全体で整合性を取る必要があるため、レイヤー分割と責務整理の大切さを理解できました。また、テストケースを先に整理することで、抜け漏れの発見や改修時の安心感が大きくなることも実感しました。</p>
+            <p>今後は、今回の経験を土台に、</p>
+            <ul>
+              <li>設計の精度（拡張性・保守性）</li>
+              <li>実装の品質（バリデーション・例外処理・セキュリティ）</li>
+              <li>検証の強さ（自動テスト・回帰テスト）</li>
+            </ul>
+            <p>をさらに高め、実務で再現できる開発力にしていきます。</p>
           </div>
         </div>
 
@@ -101,14 +126,161 @@
 
           <div class="fill-block">
             <div class="fill-label">技術記事タイトル <span class="required">必須</span></div>
-            <div class="fill-content"><p>（記事タイトルを入力。例：「Spring SecurityでログインEを実装する手順」）</p></div>
+            <div class="fill-content"><p>「Python（標準ライブラリ）とSQLiteで実装するカフェナビの認証・お気に入り機能」</p></div>
           </div>
 
         <div class="fill-block">
           <div class="fill-label">記事本文 <span class="required">必須</span></div>
           <div class="fill-hint">上記の構成に沿って記事本文を記載。コードブロックを含めてください。</div>
           <div class="fill-content">
-            <p>（記事本文をここに記載）</p>
+            <h3># Python（標準ライブラリ）とSQLiteで実装するカフェナビの認証・お気に入り機能</h3>
+            <h4>## はじめに</h4>
+            <p>本記事では、Python標準ライブラリ（http.server）+ SQLite で作成した「カフェナビ」の実装をもとに、以下を解説します。</p>
+            <ul>
+              <li>メール/パスワード認証</li>
+              <li>セッション管理</li>
+              <li>お気に入り登録/解除</li>
+              <li>フロントエンド連携（JavaScript fetch）</li>
+            </ul>
+            <p>―――</p>
+
+            <h4>## 1. システム概要</h4>
+            <p>カフェナビは、作業向けカフェを一覧・詳細表示し、ログインユーザーがお気に入り管理できるWebアプリです。</p>
+            <ul>
+              <li>フロントエンド: HTML/CSS/JavaScript</li>
+              <li>バックエンド: Python (server.py)</li>
+              <li>データベース: SQLite (db/cafe_navi.sqlite3)</li>
+            </ul>
+            <p>―――</p>
+
+            <h4>## 2. DB設計（主要テーブル）</h4>
+            <ul>
+              <li>users: ユーザー情報</li>
+              <li>cafes: カフェマスタ</li>
+              <li>favorites: ユーザー×カフェのお気に入り</li>
+              <li>user_sessions: セッショントークン</li>
+            </ul>
+            <p>favorites には UNIQUE(user_id, cafe_id) を設定し、重複登録を防止しています。</p>
+            <pre>CREATE TABLE IF NOT EXISTS favorites (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  cafe_id INTEGER NOT NULL,
+  created_at TEXT NOT NULL,
+  UNIQUE(user_id, cafe_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (cafe_id) REFERENCES cafes(id) ON DELETE CASCADE
+);</pre>
+            <p>―――</p>
+
+            <h4>## 3. バックエンド実装</h4>
+            <h5>### 3-1. パスワードのハッシュ化</h5>
+            <p>平文保存はせず、salt + SHA-256 で保存/照合します。</p>
+            <pre>def hash_password(password: str, salt: Optional[str] = None) -&gt; str:
+  if salt is None:
+    salt = secrets.token_hex(16)
+  digest = hashlib.sha256(f"{salt}:{password}".encode("utf-8")).hexdigest()
+  return f"{salt}${digest}"
+
+def verify_password(password: str, password_hash: str) -&gt; bool:
+  parts = password_hash.split("$", 1)
+  if len(parts) != 2:
+    return False
+  salt, stored_digest = parts
+  calc = hash_password(password, salt).split("$", 1)[1]
+  return hmac.compare_digest(calc, stored_digest)</pre>
+
+            <h5>### 3-2. ログインAPI（セッション発行）</h5>
+            <p>認証成功時にトークンを発行し、user_sessions に保存します。</p>
+            <pre>if parsed.path == "/api/login":
+  payload = self._read_json()
+  email = str(payload.get("email", "")).strip().lower()
+  password = str(payload.get("password", ""))
+
+  user = conn.execute(
+    "SELECT id, user_name, email, password_hash FROM users WHERE email = ? AND is_active = 1",
+    (email,)
+  ).fetchone()
+
+  if user is None or not verify_password(password, user["password_hash"]):
+    self._send_json(HTTPStatus.UNAUTHORIZED, {"error": "メールアドレスまたはパスワードが違います"})
+    return
+
+  token = secrets.token_hex(32)
+  expires = datetime.now(timezone.utc) + timedelta(days=14)
+
+  conn.execute(
+    "INSERT INTO user_sessions(user_id, session_token, expires_at, created_at) VALUES(?, ?, ?, ?)",
+    (user["id"], token, expires.strftime("%Y-%m-%d %H:%M:%S"), utc_now_iso())
+  )
+  conn.commit()
+
+  self._send_json(HTTPStatus.OK, {"sessionToken": token, "user": {"id": user["id"], "userName": user["user_name"]}})</pre>
+
+            <h5>### 3-3. お気に入りAPI（追加/削除）</h5>
+            <p>ログイン中ユーザーのみ操作可能にしています。</p>
+            <pre>if parsed.path == "/api/favorites":
+  user = self._require_user(conn)
+  if user is None:
+    return
+
+  payload = self._read_json()
+  cafe_code = str(payload.get("cafeCode", "")).strip()
+  cafe_name = str(payload.get("cafeName", "")).strip() or cafe_code
+  area = str(payload.get("area", "")).strip()
+
+  conn.execute(
+    """
+    INSERT INTO cafes(external_code, name, area, created_at, updated_at)
+    VALUES(?, ?, ?, ?, ?)
+    ON CONFLICT(external_code) DO UPDATE SET name=excluded.name, area=excluded.area, updated_at=excluded.updated_at
+    """,
+    (cafe_code, cafe_name, area, utc_now_iso(), utc_now_iso()),
+  )</pre>
+            <p>―――</p>
+
+            <h4>## 4. フロントエンド連携</h4>
+            <h5>### 4-1. ログイン処理</h5>
+            <p>ログイン成功後に sessionToken を localStorage へ保存し、一覧画面へ遷移します。</p>
+            <pre>const response = await fetch(apiUrl("/api/login"), {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email, password })
+});
+const data = await response.json();
+localStorage.setItem("cafeNaviSessionToken", data.sessionToken || "");
+window.location.href = "index.html";</pre>
+
+            <h5>### 4-2. API呼び出し共通化</h5>
+            <p>AuthorizationヘッダーにBearerトークンを付与します。</p>
+            <pre>const apiFetch = (path, options = {}) =&gt; {
+  const headers = new Headers(options.headers || {});
+  const token = localStorage.getItem("cafeNaviSessionToken") || "";
+  if (token) headers.set("Authorization", `Bearer ${token}`);
+  return fetch(apiUrl(path), { ...options, headers });
+};</pre>
+            <p>―――</p>
+
+            <h4>## 5. テスト結果サマリー</h4>
+            <ul>
+              <li>総テストケース数: 20</li>
+              <li>OK: 20</li>
+              <li>NG: 0</li>
+              <li>未実施: 0</li>
+              <li>合格率: 100%</li>
+            </ul>
+            <p>認証、セッション、お気に入り追加/解除、一覧・詳細遷移の主要導線を確認済みです。</p>
+            <p>―――</p>
+
+            <h4>## 6. 今後の改善</h4>
+            <ul>
+              <li>詳細情報を静的データではなくAPI取得へ統一</li>
+              <li>トークン保持方式（Cookie/Storage）の設計統一</li>
+              <li>検索・ソート・CSV出力機能の追加</li>
+            </ul>
+            <p>―――</p>
+
+            <h4>## まとめ</h4>
+            <p>本実装は、軽量なPython標準構成でも、認証・セッション・お気に入り管理を備えた実用的なWebアプリを構築できることを示しています。小規模開発や学習用途で、バックエンドの基本設計を押さえる題材として有効です。</p>
           </div>
         </div>
 
@@ -123,16 +295,16 @@
         <table class="doc-table">
           <thead><tr><th>スキル領域</th><th>自己評価</th><th>コメント</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>HTML/CSS</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>JavaScript</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Java</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Spring Boot</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>データベース</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>UI/UXデザイン</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Figma</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Git/GitHub</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>AI活用（プロンプト）</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>マーケティング</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
+          <tr><td>HTML / CSS</td><td>★★★★☆</td><td>レスポンシブ対応を含む画面実装ができる。保守性を意識したクラス設計や命名規則については継続的に改善を行っている。</td></tr>
+          <tr><td>JavaScript</td><td>★★★★☆</td><td>fetch を用いたAPI連携や画面状態制御を実装できる。今後はテスト自動化や非同期処理設計の理解をさらに深めたい。</td></tr>
+          <tr><td>Java</td><td>★★★☆☆</td><td>基本文法やMVC構成を用いたWebアプリケーション開発が可能。例外設計や設計原則の適用力をさらに強化したい。</td></tr>
+          <tr><td>Spring Boot</td><td>★★★☆☆</td><td>CRUD処理やログイン認証など基本的なバックエンド開発ができる。セキュリティ設定や運用設計については今後の課題である。</td></tr>
+          <tr><td>データベース</td><td>★★★★☆</td><td>ER図設計、正規化、制約・インデックス設計を行うことができる。性能検証やチューニングについては継続的に学習中。</td></tr>
+          <tr><td>UI / UXデザイン</td><td>★★★☆☆</td><td>基本的な導線設計や統一感のあるUI作成が可能。今後はユーザビリティ評価や改善分析を強化したい。</td></tr>
+          <tr><td>Figma</td><td>★★★☆☆</td><td>ワイヤーフレーム作成や画面設計、コンポーネント活用ができる。プロトタイプ精度の向上を今後の課題としている。</td></tr>
+          <tr><td>Git / GitHub</td><td>★★★☆☆</td><td>日常的なブランチ運用やPull Request対応が可能。レビュー効率化やコミット履歴設計を改善していきたい。</td></tr>
+          <tr><td>AI活用（プロンプト）</td><td>★★★★☆</td><td>要件整理、実装補助、ドキュメント作成などにAIを活用できる。今後は出力品質検証の型化を進めたい。</td></tr>
+          <tr><td>マーケティング</td><td>★★☆☆☆</td><td>ペルソナ設計や基本的な訴求整理は可能。KPI設計や検証サイクルの実践経験を今後増やしたい。</td></tr>
           </tbody>
         </table>
 
@@ -146,7 +318,48 @@
           <div class="fill-label">今後学びたい技術・分野 <span class="required">必須</span></div>
           <div class="fill-hint">今後のキャリアに向けて学習したい技術やスキル</div>
           <div class="fill-content">
-            <p>（今後の学習計画を記載）</p>
+            <p>今後の学習計画は、カフェナビ開発で見えた課題を軸に、以下の順で進めます。</p>
+            <ol>
+              <li>バックエンド実践力の強化</li>
+            </ol>
+            <ul>
+              <li>Python/Javaでの認証・認可を本格化（JWT、RBAC、セッション管理の比較実装）</li>
+              <li>API設計（エラーレスポンス統一、OpenAPI化、バージョニング）</li>
+              <li>テスト強化（単体・結合・E2Eの自動化）</li>
+            </ul>
+            <ol start="2">
+              <li>データベース・性能改善</li>
+            </ol>
+            <ul>
+              <li>インデックス最適化、クエリ実行計画の読み取り</li>
+              <li>N+1や不要クエリの改善、キャッシュ戦略の基礎</li>
+              <li>マイグレーション運用（Flyway/Liquibase等）の習得</li>
+            </ul>
+            <ol start="3">
+              <li>フロントエンド高度化</li>
+            </ol>
+            <ul>
+              <li>状態管理とコンポーネント設計の体系的学習（React/Next.js）</li>
+              <li>フォームバリデーション、アクセシビリティ、UIテスト導入</li>
+              <li>モバイル表示最適化とUX改善（操作導線の定量評価）</li>
+            </ul>
+            <ol start="4">
+              <li>インフラ・運用スキル</li>
+            </ol>
+            <ul>
+              <li>Dockerでのローカル/本番同一化</li>
+              <li>CI/CD（GitHub Actions）でテスト・デプロイ自動化</li>
+              <li>監視・ログ設計（エラー検知、運用時の原因追跡）</li>
+            </ul>
+            <ol start="5">
+              <li>プロダクト思考の強化</li>
+            </ol>
+            <ul>
+              <li>KPI設計（継続率、お気に入り登録率など）</li>
+              <li>仮説→実装→計測→改善の運用サイクルを回す</li>
+              <li>ユーザーヒアリング結果を要件へ反映する訓練</li>
+            </ul>
+            <p>最終的には、フロントエンド・バックエンド・DB・運用まで一貫して改善できる<strong>Webエンジニア</strong>を目指します。</p>
           </div>
         </div>
 
