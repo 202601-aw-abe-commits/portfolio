@@ -158,7 +158,31 @@
           <div class="fill-label">画面遷移図 <span class="required">必須</span></div>
           <div class="fill-hint">各画面間の遷移関係を図示</div>
           <div class="fill-content">
-            <p>（画面遷移図を記載）</p>
+            <pre>flowchart TD
+    A[index.html&lt;br/&gt;一覧画面] --&gt;|カフェカードクリック| B[cafe-detail.html&lt;br/&gt;詳細画面]
+    B --&gt;|戻るリンク/ブラウザ戻る| A
+
+    A --&gt;|お気に入り表示を未ログインで選択| C[auth-choice.html&lt;br/&gt;認証選択画面]
+    A --&gt;|ヘッダー「ログイン」| C
+
+    C --&gt;|新規登録を選択| D[signup.html&lt;br/&gt;新規登録画面]
+    C --&gt;|ログインを選択| E[login.html&lt;br/&gt;ログイン画面]
+
+    D --&gt;|登録成功後自動遷移| E
+    E --&gt;|ログイン成功後自動遷移| A
+
+    A --&gt;|ヘッダー「ログアウト」| A
+
+    A --&gt; F[about.html&lt;br/&gt;About画面]
+    A --&gt; G[contact.html&lt;br/&gt;Contact画面]
+    F --&gt; A
+    G --&gt; A</pre>
+            <p>補足（コード準拠）</p>
+            <ul>
+              <li>index.html → cafe-detail.html?id=... は js/main.js で遷移。</li>
+              <li>未ログイン時に「お気に入り」表示を押すと auth-choice.html へ遷移。</li>
+              <li>signup.html 成功後は login.html へ、login.html 成功後は index.html へ自動遷移。</li>
+            </ul>
           </div>
         </div>
 
@@ -172,10 +196,123 @@
             <h3 class="subsection-title">機能仕様テンプレート（コピーして使用）</h3>
 
         <div class="fill-block">
-          <div class="fill-label">機能名：（機能名を入力） <span class="required">必須</span></div>
-          <div class="fill-hint">機能ID：F-XXX</div>
+          <div class="fill-label">機能名：新規会員登録 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-001</div>
           <div class="fill-content">
-            <p>（機能の詳細仕様を記載）</p>
+            <p>目的: 新規ユーザーを作成する</p>
+            <p>対応画面: signup.html</p>
+            <p>入力: userName, email, password</p>
+            <p>入力チェック: userName 2文字以上 / email に @ を含む / password 6文字以上</p>
+            <p>API: POST /api/signup</p>
+            <p>正常時: 201 Created。メッセージ表示後、ログイン画面へ遷移</p>
+            <p>異常時: 400 入力不正 / 409 メール重複。通信エラー時は画面にエラーメッセージ表示</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：ログイン認証 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-002</div>
+          <div class="fill-content">
+            <p>目的: ユーザー認証とログイン状態の確立</p>
+            <p>対応画面: login.html</p>
+            <p>入力: email, password</p>
+            <p>API: POST /api/login</p>
+            <p>処理: メールでユーザー取得 / パスワードハッシュ照合 / セッショントークン発行（user_sessions 保存）</p>
+            <p>正常時: 200 OK。sessionToken を localStorage 保存し、index.html に遷移</p>
+            <p>異常時: 401 認証失敗。通信エラー時メッセージ表示</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：ログアウト <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-003</div>
+          <div class="fill-content">
+            <p>目的: ログイン状態を終了する</p>
+            <p>対応画面: index.html（ヘッダー）</p>
+            <p>API: POST /api/logout</p>
+            <p>処理: user_sessions から該当トークン削除 / クッキー無効化 / フロントのトークン削除</p>
+            <p>正常時: 200 OK。画面を未ログイン表示に更新</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：カフェ一覧表示 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-004</div>
+          <div class="fill-content">
+            <p>目的: カフェ情報をカード形式で一覧表示</p>
+            <p>対応画面: index.html</p>
+            <p>データ源: 画面のカードDOM（静的配置） / お気に入り状態はAPIで反映</p>
+            <p>補足: ログイン状態に応じてヘッダー表示（ログイン/ログアウト）切替</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：ページネーション <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-005</div>
+          <div class="fill-content">
+            <p>目的: 一覧の視認性向上</p>
+            <p>対応画面: index.html</p>
+            <p>仕様: 1ページあたり10件 / 前へ・次へ・ページ番号ボタン表示 / 表示対象件数に応じてページングの表示制御</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：カフェ詳細表示 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-006</div>
+          <div class="fill-content">
+            <p>目的: 選択したカフェの詳細確認</p>
+            <p>対応画面: cafe-detail.html</p>
+            <p>遷移: index.html のカードクリック（?id=cafe-x）</p>
+            <p>表示内容: 店名、評価、エリア、説明、タグ、価格帯、営業時間、地図（Leaflet + OpenStreetMap）</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：お気に入り登録 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-007</div>
+          <div class="fill-content">
+            <p>目的: カフェをお気に入りに追加</p>
+            <p>対応画面: index.html</p>
+            <p>前提: ログイン済み</p>
+            <p>API: POST /api/favorites</p>
+            <p>リクエスト: cafeCode, cafeName, area</p>
+            <p>正常時: 201 Created。ハート表示を「♥」へ更新</p>
+            <p>異常時: 401 未ログイン / 400 必須値不足</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：お気に入り解除 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-008</div>
+          <div class="fill-content">
+            <p>目的: お気に入りから削除</p>
+            <p>対応画面: index.html</p>
+            <p>前提: ログイン済み</p>
+            <p>API: DELETE /api/favorites/{cafeCode}</p>
+            <p>正常時: 200 OK。ハート表示を「♡」へ更新</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：お気に入り一覧表示 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-009</div>
+          <div class="fill-content">
+            <p>目的: ログインユーザーのお気に入りだけを表示</p>
+            <p>対応画面: index.html</p>
+            <p>API: GET /api/favorites</p>
+            <p>仕様: API結果（cafeCode配列）とカードを照合。「お気に入り」タブ時は該当カードのみ表示。未ログインでお気に入り表示を押下した場合、auth-choice.html へ遷移</p>
+          </div>
+        </div>
+
+        <div class="fill-block">
+          <div class="fill-label">機能名：ログイン状態取得 <span class="required">必須</span></div>
+          <div class="fill-hint">機能ID：F-010</div>
+          <div class="fill-content">
+            <p>目的: 現在のログイン状態を判定</p>
+            <p>対応画面: index.html 初期表示時</p>
+            <p>API: GET /api/me</p>
+            <p>正常時: 200 OK + ユーザー情報。ヘッダーを「ログアウト（ユーザー名）」表示に更新</p>
+            <p>異常時: 401 未ログインとして扱う</p>
           </div>
         </div>
 
@@ -184,8 +321,14 @@
         <table class="doc-table">
           <thead><tr><th>項目名</th><th>データ型</th><th>必須</th><th>バリデーション</th><th>備考</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>（項目名）</td><td>（String / Integer / Date 等）</td><td>（○ / —）</td><td>（必須チェック / 文字数制限 等）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>userName</td><td>String</td><td>○</td><td>2文字以上</td><td>新規会員登録時に使用</td></tr>
+          <tr><td>email</td><td>String</td><td>○</td><td>「@」を含むメール形式</td><td>新規会員登録時に使用。サーバ側で小文字化して保存</td></tr>
+          <tr><td>password</td><td>String</td><td>○</td><td>6文字以上</td><td>新規会員登録時に使用。サーバ側でハッシュ化して保存</td></tr>
+          <tr><td>loginEmail</td><td>String</td><td>○</td><td>空欄不可</td><td>ログイン時に使用</td></tr>
+          <tr><td>loginPassword</td><td>String</td><td>○</td><td>空欄不可</td><td>ログイン時に使用</td></tr>
+          <tr><td>cafeCode</td><td>String</td><td>○</td><td>必須チェック</td><td>お気に入り追加時に使用</td></tr>
+          <tr><td>cafeName</td><td>String</td><td>—</td><td>なし</td><td>未入力時は cafeCode を使用</td></tr>
+          <tr><td>area</td><td>String</td><td>—</td><td>なし</td><td>お気に入り追加時に使用</td></tr>
           </tbody>
         </table>
 
@@ -200,16 +343,34 @@
           <div class="fill-label">セキュリティ要件 <span class="required">必須</span></div>
           <div class="fill-hint">認証・認可・データ保護に関する要件</div>
           <div class="fill-content">
-            <p>（セキュリティ要件を記載）</p>
+            <ul>
+              <li>認証方式: メールアドレス + パスワード認証（/api/login）を採用する。認証成功時にセッショントークンを発行し、user_sessions テーブルで管理する。</li>
+              <li>認可方式: お気に入り機能（取得・追加・削除）はログイン必須とする。未認証時は 401 Unauthorized を返却する。</li>
+              <li>パスワード保護: 平文保存は行わず、salt + SHA-256 ハッシュで保存する。</li>
+              <li>セッション管理: トークン有効期限は14日。ログアウト時はセッションを削除し、Cookieを無効化する。</li>
+              <li>通信・ヘッダー: CORSヘッダーを設定し、APIアクセスを制御する。</li>
+              <li>データ保護: DBは外部キー制約を有効化し、参照整合性を維持する。users.email、favorites(user_id, cafe_id)、user_sessions.session_token には一意制約を設ける。</li>
+            </ul>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">対応環境 <span class="required">必須</span></div>
           <div class="fill-hint">対応ブラウザ・デバイス</div>
           <div class="fill-content">
-            <p>・対応ブラウザ：Chrome（最新版）/ Firefox（最新版）/ Edge（最新版）
-・対応デバイス：PC / タブレット / スマートフォン
-（自分の実際の対応範囲に合わせて編集してください）</p>
+            <p>対応ブラウザ</p>
+            <ul>
+              <li>Chrome（最新版）</li>
+              <li>Firefox（最新版）</li>
+              <li>Edge（最新版）</li>
+              <li>Safari（最新版）</li>
+            </ul>
+            <p>対応デバイス</p>
+            <ul>
+              <li>PC</li>
+              <li>タブレット</li>
+              <li>スマートフォン</li>
+            </ul>
+            <p>補足: 本システムはHTML/CSS/JavaScriptのレスポンシブ構成で実装され、localStorage と fetch API を利用できる現行ブラウザを前提とします。</p>
           </div>
         </div>
 
