@@ -6,6 +6,11 @@
   <title>デザインガイドライン -  プロジェクトアーカイブ</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .strong-text-table .template-row td {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
   <button class="hamburger" aria-label="メニュー">
@@ -62,7 +67,12 @@
           <div class="fill-label">デザインキーワード <span class="required">必須</span></div>
           <div class="fill-hint">デザインの方向性を表すキーワード3つとその説明</div>
           <div class="fill-content">
-            <p>（デザインキーワード3つとその説明を記載）</p>
+            <p>デザインキーワード①「温かみ」</p>
+            <p>カフェらしい落ち着いた雰囲気を表現するために、オレンジやベージュを基調とした暖色系カラーを使用している。背景画像にも自然光の入るカフェ写真を使用することで、利用者が「ここなら落ち着いて作業できそう」と感じられるデザインにしている。</p>
+            <p>デザインキーワード②「シンプル」</p>
+            <p>学生でも直感的に操作できるよう、検索バー・絞り込み条件・カフェ一覧を分かりやすく整理して配置している。情報量は多いが、余白を広めに取ることで見やすさを確保し、初めて利用する人でも迷わず操作できる構成にしている。</p>
+            <p>デザインキーワード③「使いやすさ」</p>
+            <p>ユーザーが目的のカフェを素早く探せるように、検索機能と絞り込み機能を画面上部・左側に固定配置している。また、カード形式でカフェ情報を一覧表示することで、評価・設備・営業時間などを一目で確認できるよう工夫している。お気に入り機能も搭載し、気になった店舗を後から見返しやすい設計にしている。</p>
           </div>
         </div>
 
@@ -75,15 +85,15 @@
             <div class="fill-label">カラーパレット <span class="required">必須</span></div>
             <div class="fill-hint">各色のHEXコード・使用場面を記載し、実際の色見本も表示してください</div>
 
-        <table class="doc-table">
+        <table class="doc-table strong-text-table">
           <thead><tr><th>色の種類</th><th>カラーコード</th><th>色見本</th><th>使用場面</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>メインカラー</td><td>#（コードを入力）</td><td>（CSSで色見本を表示）</td><td>ヘッダー、ボタン、見出し</td></tr>
-          <tr class="template-row"><td>サブカラー</td><td>#（コードを入力）</td><td>（CSSで色見本を表示）</td><td>背景、カード、セクション区切り</td></tr>
-          <tr class="template-row"><td>アクセントカラー</td><td>#（コードを入力）</td><td>（CSSで色見本を表示）</td><td>CTA、リンク、強調</td></tr>
-          <tr class="template-row"><td>背景色</td><td>#（コードを入力）</td><td>（CSSで色見本を表示）</td><td>ページ背景</td></tr>
-          <tr class="template-row"><td>テキスト色</td><td>#（コードを入力）</td><td>（CSSで色見本を表示）</td><td>本文テキスト</td></tr>
-          <tr class="template-row"><td>テキスト色（薄）</td><td>#（コードを入力）</td><td>（CSSで色見本を表示）</td><td>補助テキスト、注釈</td></tr>
+          <tr class="template-row"><td>メインカラー</td><td>#FF8A00</td><td><span style="display:inline-block;width:60px;height:24px;background:#FF8A00;border-radius:6px;"></span></td><td>ヘッダー、ロゴ、ボタン、見出し</td></tr>
+          <tr class="template-row"><td>サブカラー</td><td>#FFF4E5</td><td><span style="display:inline-block;width:60px;height:24px;background:#FFF4E5;border-radius:6px;border:1px solid #ddd;"></span></td><td>背景、カード、セクション区切り</td></tr>
+          <tr class="template-row"><td>アクセントカラー</td><td>#F25C05</td><td><span style="display:inline-block;width:60px;height:24px;background:#F25C05;border-radius:6px;"></span></td><td>CTA、リンク、強調部分</td></tr>
+          <tr class="template-row"><td>背景色</td><td>#FAF7F0</td><td><span style="display:inline-block;width:60px;height:24px;background:#FAF7F0;border-radius:6px;border:1px solid #ddd;"></span></td><td>ページ全体の背景</td></tr>
+          <tr class="template-row"><td>テキスト色</td><td>#1F2E45</td><td><span style="display:inline-block;width:60px;height:24px;background:#1F2E45;border-radius:6px;"></span></td><td>本文テキスト、見出し</td></tr>
+          <tr class="template-row"><td>テキスト色（薄）</td><td>#6B7A90</td><td><span style="display:inline-block;width:60px;height:24px;background:#6B7A90;border-radius:6px;"></span></td><td>補助テキスト、説明文、注釈</td></tr>
           </tbody>
         </table>
 
@@ -95,15 +105,15 @@
 
           <div class="fill-block">
             <div class="fill-label">フォント設定 <span class="required">必須</span></div>
-        <table class="doc-table">
+        <table class="doc-table strong-text-table">
           <thead><tr><th>要素</th><th>フォント名</th><th>サイズ</th><th>太さ</th><th>行間</th><th>用途</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>h1（大見出し）</td><td>（フォント名）</td><td>（px）</td><td>（bold等）</td><td>（倍率）</td><td>ページタイトル</td></tr>
-          <tr class="template-row"><td>h2（中見出し）</td><td>（フォント名）</td><td>（px）</td><td>（bold等）</td><td>（倍率）</td><td>セクション見出し</td></tr>
-          <tr class="template-row"><td>h3（小見出し）</td><td>（フォント名）</td><td>（px）</td><td>（bold等）</td><td>（倍率）</td><td>サブセクション</td></tr>
-          <tr class="template-row"><td>本文</td><td>（フォント名）</td><td>（px）</td><td>（regular等）</td><td>（倍率）</td><td>通常テキスト</td></tr>
-          <tr class="template-row"><td>キャプション</td><td>（フォント名）</td><td>（px）</td><td>（regular等）</td><td>（倍率）</td><td>画像の説明等</td></tr>
-          <tr class="template-row"><td>ボタン</td><td>（フォント名）</td><td>（px）</td><td>（bold等）</td><td>—</td><td>ボタンテキスト</td></tr>
+          <tr class="template-row"><td>h1（大見出し）</td><td>Noto Sans JP</td><td>48px</td><td>Bold</td><td>1.4</td><td>ページタイトル</td></tr>
+          <tr class="template-row"><td>h2（中見出し）</td><td>Noto Sans JP</td><td>36px</td><td>Bold</td><td>1.5</td><td>セクション見出し</td></tr>
+          <tr class="template-row"><td>h3（小見出し）</td><td>Noto Sans JP</td><td>28px</td><td>SemiBold</td><td>1.5</td><td>サブセクション</td></tr>
+          <tr class="template-row"><td>本文</td><td>Noto Sans JP</td><td>16px</td><td>Regular</td><td>1.8</td><td>通常テキスト</td></tr>
+          <tr class="template-row"><td>キャプション</td><td>Noto Sans JP</td><td>13px</td><td>Regular</td><td>1.6</td><td>画像の説明、補足情報</td></tr>
+          <tr class="template-row"><td>ボタン</td><td>Noto Sans JP</td><td>18px</td><td>Bold</td><td>—</td><td>ボタンテキスト</td></tr>
           </tbody>
         </table>
 
@@ -118,21 +128,265 @@
           <div class="fill-label">ボタン <span class="required">必須</span></div>
           <div class="fill-hint">プライマリ・セカンダリ・デンジャーの3種類のボタンスタイル（実物のHTMLサンプル付き）</div>
           <div class="fill-content">
-            <p>（ここにボタンの実物サンプルとCSSコードを記載）</p>
+            <pre><code>&lt;button class="btn btn-primary"&gt;検索する&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;条件をリセット&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;削除する&lt;/button&gt;
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Noto Sans JP", sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+/* プライマリボタン */
+.btn-primary {
+  background-color: #FF8A00;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #F25C05;
+}
+
+/* セカンダリボタン */
+.btn-secondary {
+  background-color: #FFF4E5;
+  color: #1F2E45;
+  border: 2px solid #FF8A00;
+}
+
+.btn-secondary:hover {
+  background-color: #FFE2B8;
+}
+
+/* デンジャーボタン */
+.btn-danger {
+  background-color: #E53935;
+  color: #FFFFFF;
+}
+
+.btn-danger:hover {
+  background-color: #C62828;
+}</code></pre>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">フォーム要素 <span class="required">必須</span></div>
           <div class="fill-hint">テキスト入力・セレクト・テキストエリア・チェックボックス・ラジオボタン（実物のHTMLサンプル付き）</div>
           <div class="fill-content">
-            <p>（ここにフォーム要素の実物サンプルとCSSコードを記載）</p>
+            <pre><code>&lt;div class="check-item"&gt;
+  &lt;input type="checkbox" id="power"&gt;
+  &lt;label for="power"&gt;電源あり&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;!-- ラジオボタン --&gt;
+&lt;div class="form-group"&gt;
+  &lt;label&gt;利用目的&lt;/label&gt;
+
+  &lt;div class="radio-item"&gt;
+    &lt;input type="radio" name="purpose" id="study"&gt;
+    &lt;label for="study"&gt;勉強&lt;/label&gt;
+  &lt;/div&gt;
+
+  &lt;div class="radio-item"&gt;
+    &lt;input type="radio" name="purpose" id="work"&gt;
+    &lt;label for="work"&gt;作業&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+CSSコード
+.form-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1F2E45;
+}
+
+/* テキスト入力・セレクト・テキストエリア */
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #E5E7EB;
+  border-radius: 14px;
+  font-size: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #FFFFFF;
+  transition: 0.3s;
+}
+
+/* フォーカス時 */
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #FF8A00;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 138, 0, 0.15);
+}
+
+/* テキストエリア */
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* チェックボックス・ラジオボタン */
+.check-item,
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #FF8A00;
+}</code></pre>
           </div>
         </div>
         <div class="fill-block">
           <div class="fill-label">カード・テーブル・その他 <span class="required">必須</span></div>
           <div class="fill-hint">カードコンポーネント・テーブルスタイル・アラート等（実物のHTMLサンプル付き）</div>
           <div class="fill-content">
-            <p>（ここにコンポーネントの実物サンプルとCSSコードを記載）</p>
+            <pre><code>&lt;div class="cafe-card"&gt;
+  &lt;img src="cafe.jpg" alt="カフェ画像"&gt;
+  &lt;div class="card-content"&gt;
+    &lt;h3&gt;CAFE SUNNY&lt;/h3&gt;
+    &lt;p&gt;Wi-Fi・電源あり。学生の勉強や作業に使いやすいカフェです。&lt;/p&gt;
+    &lt;span class="tag"&gt;Wi-Fiあり&lt;/span&gt;
+    &lt;span class="tag"&gt;電源あり&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- テーブル --&gt;
+&lt;table class="info-table"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;項目&lt;/th&gt;
+    &lt;th&gt;内容&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;営業時間&lt;/td&gt;
+    &lt;td&gt;10:00〜21:00&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;設備&lt;/td&gt;
+    &lt;td&gt;Wi-Fi / 電源 / 禁煙席&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- アラート --&gt;
+&lt;div class="alert alert-info"&gt;
+  検索条件に合うカフェが見つかりました。
+&lt;/div&gt;
+
+&lt;div class="alert alert-warning"&gt;
+  条件を変更すると、より多くのカフェが表示されます。
+&lt;/div&gt;
+
+CSSコード
+/* カード */
+.cafe-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 46, 69, 0.12);
+  border-left: 6px solid #FF8A00;
+}
+
+.cafe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  font-size: 24px;
+  color: #1F2E45;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-size: 16px;
+  color: #6B7A90;
+  line-height: 1.8;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 12px;
+  margin-right: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: #FFF4E5;
+  color: #F25C05;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* テーブル */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.info-table th {
+  background-color: #FF8A00;
+  color: #FFFFFF;
+  padding: 14px;
+  text-align: left;
+}
+
+.info-table td {
+  padding: 14px;
+  border-bottom: 1px solid #E5E7EB;
+  color: #1F2E45;
+}
+
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* アラート */
+.alert {
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.alert-info {
+  background-color: #FFF4E5;
+  color: #F25C05;
+  border-left: 5px solid #FF8A00;
+}
+
+.alert-warning {
+  background-color: #FFF3CD;
+  color: #856404;
+  border-left: 5px solid #FFC107;
+}</code></pre>
           </div>
         </div>
 
@@ -145,7 +399,26 @@
           <div class="fill-label">レイアウト基本ルール <span class="required">必須</span></div>
           <div class="fill-hint">グリッド・余白・角丸・シャドウ等の数値ルール</div>
           <div class="fill-content">
-            <p>（レイアウトルールを記載）</p>
+            <p>レイアウト基本ルール</p>
+            <table class="doc-table strong-text-table">
+              <thead>
+                <tr><th>項目</th><th>数値ルール</th><th>使用場面</th></tr>
+              </thead>
+              <tbody>
+                <tr class="template-row"><td>最大幅</td><td>1200px</td><td>PC表示時のメインコンテンツ幅</td></tr>
+                <tr class="template-row"><td>グリッド</td><td>12カラム</td><td>PCレイアウト全体</td></tr>
+                <tr class="template-row"><td>カード間の余白</td><td>24px</td><td>カフェカード一覧</td></tr>
+                <tr class="template-row"><td>セクション上下余白</td><td>80px</td><td>ページ内の大きな区切り</td></tr>
+                <tr class="template-row"><td>セクション左右余白</td><td>40px</td><td>PC表示時の左右余白</td></tr>
+                <tr class="template-row"><td>スマホ左右余白</td><td>20px</td><td>480px以下の画面</td></tr>
+                <tr class="template-row"><td>要素間の余白</td><td>16px / 24px</td><td>フォーム、カード、ボタン周り</td></tr>
+                <tr class="template-row"><td>角丸</td><td>14px</td><td>入力フォーム、ボタン</td></tr>
+                <tr class="template-row"><td>角丸（カード）</td><td>20px</td><td>カフェカード、情報カード</td></tr>
+                <tr class="template-row"><td>角丸（丸ボタン）</td><td>999px</td><td>検索ボタン、タグ</td></tr>
+                <tr class="template-row"><td>シャドウ</td><td>0 8px 24px rgba(31, 46, 69, 0.12)</td><td>カード、検索ボックス</td></tr>
+                <tr class="template-row"><td>枠線</td><td>1px solid #E5E7EB</td><td>テーブル、フォーム、区切り線</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
