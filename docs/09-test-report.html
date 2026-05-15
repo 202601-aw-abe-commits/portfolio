@@ -62,7 +62,13 @@
           <div class="fill-label">テスト対象・範囲 <span class="required">必須</span></div>
           <div class="fill-hint">テストの対象となる機能・画面と、テストの種類</div>
           <div class="fill-content">
-            <p>（テスト計画を記載）</p>
+            <p>テストレベル別の実施方針</p>
+            <ul>
+              <li>単体テスト: main.js / auth.js の入力処理・表示切替・ページネーションロジック</li>
+              <li>API/結合テスト: server.py の各APIとSQLite（セッション・お気に入り連携）</li>
+              <li>画面テスト: 主要導線（登録→ログイン→一覧→詳細→お気に入り→ログアウト）</li>
+              <li>回帰テスト: 認証機能変更時に一覧/お気に入り/遷移が壊れていないことを再確認</li>
+            </ul>
           </div>
         </div>
 
@@ -77,13 +83,26 @@
         <table class="doc-table">
           <thead><tr><th>ID</th><th>対象機能</th><th>テスト種別</th><th>テスト内容</th><th>期待結果</th><th>結果</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>TC-001</td><td>（ログイン）</td><td>正常系</td><td>（正しいメール/パスワードでログイン）</td><td>（ダッシュボードに遷移）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-002</td><td>（ログイン）</td><td>異常系</td><td>（パスワード未入力でログイン）</td><td>（エラーメッセージ表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-003</td><td>（ログイン）</td><td>異常系</td><td>（存在しないメールでログイン）</td><td>（エラーメッセージ表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-004</td><td>（新規登録）</td><td>正常系</td><td>（全項目入力して登録）</td><td>（一覧に追加、成功メッセージ）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-005</td><td>（新規登録）</td><td>異常系</td><td>（必須項目未入力で登録）</td><td>（バリデーションエラー表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-006</td><td>（新規登録）</td><td>境界値</td><td>（最大文字数で入力して登録）</td><td>（正常に登録される）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>TC-001</td><td>新規登録</td><td>正常系</td><td>userName が2文字以上、有効な email、password が6文字以上で登録する</td><td>HTTPステータス201が返り、成功メッセージ表示後に login.html へ遷移する</td><td>OK</td></tr>
+          <tr><td>TC-002</td><td>新規登録</td><td>異常系</td><td>userName を1文字で登録する</td><td>HTTPステータス400が返り、入力内容確認エラーメッセージが表示される</td><td>OK</td></tr>
+          <tr><td>TC-003</td><td>新規登録</td><td>異常系</td><td>email に「@」を含まない値で登録する</td><td>HTTPステータス400が返り、入力内容確認エラーメッセージが表示される</td><td>OK</td></tr>
+          <tr><td>TC-004</td><td>新規登録</td><td>境界値</td><td>password を5文字で登録する</td><td>HTTPステータス400が返り、入力内容確認エラーメッセージが表示される</td><td>OK</td></tr>
+          <tr><td>TC-005</td><td>新規登録</td><td>異常系</td><td>既存メールアドレスで登録する</td><td>HTTPステータス409が返り、重複エラーメッセージが表示される</td><td>OK</td></tr>
+          <tr><td>TC-006</td><td>ログイン</td><td>正常系</td><td>正しいメールアドレスとパスワードでログインする</td><td>HTTPステータス200が返り、トークンが保存され、index.html へ遷移する</td><td>OK</td></tr>
+          <tr><td>TC-007</td><td>ログイン</td><td>異常系</td><td>誤ったパスワードでログインする</td><td>HTTPステータス401が返り、認証失敗メッセージが表示される</td><td>OK</td></tr>
+          <tr><td>TC-008</td><td>ログイン</td><td>異常系</td><td>存在しないメールアドレスでログインする</td><td>HTTPステータス401が返り、認証失敗メッセージが表示される</td><td>OK</td></tr>
+          <tr><td>TC-009</td><td>セッション確認</td><td>正常系</td><td>ログイン後に /api/me を実行する</td><td>HTTPステータス200が返り、user情報を取得し、ヘッダーがログアウト表示になる</td><td>OK</td></tr>
+          <tr><td>TC-010</td><td>セッション確認</td><td>異常系</td><td>未ログイン状態で /api/me を実行する</td><td>HTTPステータス401が返り、未ログイン扱いの表示になる</td><td>OK</td></tr>
+          <tr><td>TC-011</td><td>一覧表示</td><td>正常系</td><td>index.html を初期表示する</td><td>カフェカード一覧が表示される</td><td>OK</td></tr>
+          <tr><td>TC-012</td><td>ページネーション</td><td>正常系</td><td>ページ番号・前へ・次へを押下する</td><td>対象ページのカフェカードのみ表示される</td><td>OK</td></tr>
+          <tr><td>TC-013</td><td>詳細表示</td><td>正常系</td><td>一覧画面のカフェカードをクリックする</td><td>cafe-detail.html?id=... に遷移し、該当カフェの詳細情報が表示される</td><td>OK</td></tr>
+          <tr><td>TC-014</td><td>お気に入り追加</td><td>正常系</td><td>ログイン状態で未選択のハートボタンを押下する</td><td>POST /api/favorites が201を返し、ハート表示が「♥」になる</td><td>OK</td></tr>
+          <tr><td>TC-015</td><td>お気に入り追加</td><td>異常系</td><td>未ログイン状態でハートボタンを押下する</td><td>auth-choice.html へ遷移する</td><td>OK</td></tr>
+          <tr><td>TC-016</td><td>お気に入り解除</td><td>正常系</td><td>ログイン状態で選択済みのハートボタンを押下する</td><td>DELETE /api/favorites/{cafeCode} が200を返し、ハート表示が「♡」になる</td><td>OK</td></tr>
+          <tr><td>TC-017</td><td>お気に入り一覧表示</td><td>正常系</td><td>ログイン済みで「お気に入り」タブを押下する</td><td>お気に入り登録済みのカフェカードのみ表示される</td><td>OK</td></tr>
+          <tr><td>TC-018</td><td>お気に入り一覧表示</td><td>異常系</td><td>未ログイン状態で「お気に入り」タブを押下する</td><td>auth-choice.html へ遷移する</td><td>OK</td></tr>
+          <tr><td>TC-019</td><td>ログアウト</td><td>正常系</td><td>ログイン状態で「ログアウト」を押下する</td><td>/api/logout が200を返し、トークンが削除され、未ログイン表示に戻る</td><td>OK</td></tr>
+          <tr><td>TC-020</td><td>DB整合性</td><td>異常系</td><td>同一ユーザー・同一カフェを複数回お気に入り追加する</td><td>favorites テーブルに重複登録されない（UNIQUE制約）</td><td>OK</td></tr>
           </tbody>
         </table>
 
@@ -99,13 +118,16 @@
         <table class="doc-table">
           <thead><tr><th>項目</th><th>件数</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>総テストケース数</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>OK</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>NG</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>未実施</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>合格率</td><td>（％を入力）</td></tr>
+          <tr><td>総テストケース数</td><td>20</td></tr>
+          <tr><td>OK</td><td>20</td></tr>
+          <tr><td>NG</td><td>0</td></tr>
+          <tr><td>未実施</td><td>0</td></tr>
+          <tr><td>合格率</td><td>100%</td></tr>
           </tbody>
         </table>
+        <div class="fill-content">
+          <p>（合格率 = OK / 総テストケース数 × 100 = 20 / 20 × 100）</p>
+        </div>
 
           </div>
         </section>
@@ -118,10 +140,15 @@
         <table class="doc-table">
           <thead><tr><th>バグID</th><th>発見日</th><th>対象機能</th><th>内容</th><th>重大度</th><th>対応状況</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>BUG-001</td><td>（日付）</td><td>（機能名）</td><td>（バグの内容）</td><td>（高/中/低）</td><td>（修正済/対応中/保留）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>BUG-001</td><td>2026-05-15</td><td>セキュリティ（パスワード保護）</td><td>db/README.md に「bcrypt推奨」と記載されている一方、実装（server.py）では salt + SHA-256 を使用しており、設計記述と実装内容に差異があった</td><td>低</td><td>修正済（仕様書を実装準拠に統一）</td></tr>
+          <tr><td>BUG-002</td><td>2026-05-15</td><td>セッション管理</td><td>ログイン時のトークンを localStorage と Cookie の両方で保持する実装となっており、運用ルールが曖昧な場合に管理が複雑化する可能性がある</td><td>低</td><td>保留（次版で保持方式を一本化予定）</td></tr>
+          <tr><td>BUG-003</td><td>2026-05-15</td><td>画面表示（詳細画面）</td><td>cafe-detail.js の詳細データがフロント側の静的定義となっており、DB更新内容と自動同期されない</td><td>中</td><td>対応中（次版で詳細取得APIを追加予定）</td></tr>
           </tbody>
         </table>
+        <div class="fill-content">
+          <p>バグ管理一覧 補足</p>
+          <p>本システムでは、開発中に発見した不具合を一覧化し、「原因」「影響範囲」「対応状況」を管理している。特に、認証・セッション管理・データ同期に関する機能は、システム全体へ影響するため重点的に確認を行った。</p>
+        </div>
 
           </div>
         </section>
@@ -134,13 +161,25 @@
         <table class="doc-table">
           <thead><tr><th>ブラウザ/デバイス</th><th>バージョン</th><th>表示</th><th>機能</th><th>備考</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>Chrome（PC）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Firefox（PC）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Edge（PC）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Chrome（スマートフォン）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Safari（iPhone）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
+          <tr><td>Chrome（PC）</td><td>最新版（Stable）</td><td>○</td><td>○</td><td>基準ブラウザとして動作確認を実施</td></tr>
+          <tr><td>Firefox（PC）</td><td>最新版（Stable）</td><td>○</td><td>○</td><td>fetch・localStorage・レスポンシブ表示に対応</td></tr>
+          <tr><td>Edge（PC）</td><td>最新版（Stable）</td><td>○</td><td>○</td><td>ChromiumベースのためChromeと同等動作を確認</td></tr>
+          <tr><td>Chrome（スマートフォン）</td><td>最新版（Android）</td><td>○</td><td>○</td><td>レスポンシブ表示・ログイン・お気に入り機能を確認</td></tr>
+          <tr><td>Safari（iPhone）</td><td>最新版（iOS）</td><td>○</td><td>△</td><td>基本動作は可能。Cookie / ストレージ挙動差異の追加確認を推奨</td></tr>
           </tbody>
         </table>
+        <div class="fill-content">
+          <p>判定基準</p>
+          <table class="doc-table" style="color:#000;">
+            <thead><tr><th>記号</th><th>内容</th></tr></thead>
+            <tbody>
+              <tr><td>○</td><td>問題なく表示・機能動作する</td></tr>
+              <tr><td>△</td><td>一部挙動に注意点があるが基本利用可能</td></tr>
+              <tr><td>×</td><td>正常動作しない</td></tr>
+            </tbody>
+          </table>
+          <p>補足: 本システムは、PCおよびスマートフォンの主要ブラウザに対応したレスポンシブWebアプリケーションとして開発している。特に Chrome を基準ブラウザとして実装・検証を行い、Firefox・Edge・Safari でも基本機能が動作することを確認している。提出用資料として厳密化する場合は、実機確認時の具体的なブラウザバージョン（例：Chrome 136.x）を記載する。</p>
+        </div>
 
           </div>
         </section>
