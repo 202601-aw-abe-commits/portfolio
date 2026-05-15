@@ -61,7 +61,26 @@
           <div class="fill-label">ER図 <span class="required">必須</span></div>
           <div class="fill-hint">テーブル間のリレーション図（テキストベースまたは画像で記載）</div>
           <div class="fill-content">
-            <p>（ER図を記載）</p>
+            <p><img src="../images/mermaid-diagram.png" alt="ER図（USERS / CAFES / FAVORITES / USER_SESSIONS）"></p>
+            <div class="fill-label">テーブル間のリレーション説明</div>
+            <table class="doc-table" style="color:#000;">
+              <thead><tr><th>リレーション</th><th>内容</th></tr></thead>
+              <tbody>
+                <tr><td>USERS → FAVORITES</td><td>1人のユーザーは、0件以上のお気に入りを登録できる</td></tr>
+                <tr><td>CAFES → FAVORITES</td><td>1つのカフェは、0件以上のユーザーからお気に入り登録される</td></tr>
+                <tr><td>USERS → USER_SESSIONS</td><td>1人のユーザーは、0件以上のログインセッションを持つ</td></tr>
+              </tbody>
+            </table>
+            <div class="fill-label">外部キー</div>
+            <table class="doc-table" style="color:#000;">
+              <thead><tr><th>テーブル</th><th>カラム</th><th>参照先</th></tr></thead>
+              <tbody>
+                <tr><td>FAVORITES</td><td>user_id</td><td>USERS.id</td></tr>
+                <tr><td>FAVORITES</td><td>cafe_id</td><td>CAFES.id</td></tr>
+                <tr><td>USER_SESSIONS</td><td>user_id</td><td>USERS.id</td></tr>
+              </tbody>
+            </table>
+            <p>補足: FAVORITES テーブルでは、UNIQUE(user_id, cafe_id) を設定することで、同じユーザーが同じカフェを重複してお気に入り登録できないようにしている。</p>
           </div>
         </div>
 
@@ -72,18 +91,74 @@
 
 
           <div class="fill-block">
-            <div class="fill-label">テーブル名：（テーブル名を入力） <span class="required">必須</span></div>
-            <div class="fill-hint">テーブルの目的：（このテーブルが管理するデータの説明）</div>
-        <table class="doc-table">
-          <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
-          <tr class="template-row"><td>（カラム名）</td><td>（VARCHAR(255) 等）</td><td>（YES/NO）</td><td>（デフォルト値）</td><td>（PK/FK/UNIQUE/NOT NULL）</td><td>（説明）</td></tr>
-          <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>作成日時</td></tr>
-          <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>更新日時</td></tr>
-          </tbody>
-        </table>
+            <div class="fill-label">テーブル名：users <span class="required">必須</span></div>
+            <div class="fill-hint">テーブルの目的：ユーザーアカウント情報を管理する。</div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
+                <tr><td>user_name</td><td>VARCHAR(50)</td><td>NO</td><td>-</td><td>NOT NULL</td><td>ユーザー表示名</td></tr>
+                <tr><td>email</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>UNIQUE, NOT NULL</td><td>ログイン用メールアドレス</td></tr>
+                <tr><td>password_hash</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>NOT NULL</td><td>ソルト付きパスワードハッシュ</td></tr>
+                <tr><td>is_active</td><td>TINYINT(1)</td><td>NO</td><td>1</td><td>NOT NULL</td><td>有効フラグ（1:有効）</td></tr>
+                <tr><td>last_login_at</td><td>DATETIME</td><td>YES</td><td>NULL</td><td>-</td><td>最終ログイン日時</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>作成日時</td></tr>
+                <tr><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
+          </div>
 
+          <div class="fill-block">
+            <div class="fill-label">テーブル名：cafes <span class="required">必須</span></div>
+            <div class="fill-hint">テーブルの目的：カフェの基本マスタ情報を管理する。</div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
+                <tr><td>external_code</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>UNIQUE, NOT NULL</td><td>画面側IDと連携する外部コード（例：cafe-1）</td></tr>
+                <tr><td>name</td><td>VARCHAR(120)</td><td>NO</td><td>-</td><td>NOT NULL</td><td>カフェ名</td></tr>
+                <tr><td>area</td><td>VARCHAR(80)</td><td>YES</td><td>NULL</td><td>-</td><td>エリア名</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>作成日時</td></tr>
+                <tr><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">テーブル名：favorites <span class="required">必須</span></div>
+            <div class="fill-hint">テーブルの目的：ユーザーとカフェのお気に入り関係を管理する。</div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
+                <tr><td>user_id</td><td>BIGINT</td><td>NO</td><td>-</td><td>FK, NOT NULL</td><td>users.id 参照</td></tr>
+                <tr><td>cafe_id</td><td>BIGINT</td><td>NO</td><td>-</td><td>FK, NOT NULL</td><td>cafes.id 参照</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>登録日時</td></tr>
+                <tr><td>複合制約</td><td>-</td><td>-</td><td>-</td><td>UNIQUE(user_id, cafe_id)</td><td>同一ユーザーの重複お気に入り防止</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">テーブル名：user_sessions <span class="required">必須</span></div>
+            <div class="fill-hint">テーブルの目的：ログインセッション情報を管理する。</div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
+                <tr><td>user_id</td><td>BIGINT</td><td>NO</td><td>-</td><td>FK, NOT NULL</td><td>users.id 参照</td></tr>
+                <tr><td>session_token</td><td>CHAR(64)</td><td>NO</td><td>-</td><td>UNIQUE, NOT NULL</td><td>セッショントークン</td></tr>
+                <tr><td>expires_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>NOT NULL</td><td>有効期限</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>作成日時</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">補足</div>
+            <div class="fill-content">
+              <p>本システムの実装DBは SQLite を使用しているが、提出用資料では一般的なデータベース設計書として分かりやすくするため、BIGINT、VARCHAR、DATETIME などのSQL型を用いて記載している。</p>
+            </div>
           </div>
         </section>
 
@@ -95,10 +170,20 @@
         <table class="doc-table">
           <thead><tr><th>テーブル名</th><th>インデックス名</th><th>対象カラム</th><th>種類</th><th>設定理由</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>（テーブル名）</td><td>idx_（テーブル）_（カラム）</td><td>（カラム名）</td><td>（UNIQUE / INDEX）</td><td>（検索で頻繁に使用するため等）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr><td>users</td><td>uk_users_email</td><td>email</td><td>UNIQUE</td><td>ログイン時にメールアドレスでユーザー検索を行うため（重複防止も兼ねる）</td></tr>
+          <tr><td>cafes</td><td>uk_cafes_external_code</td><td>external_code</td><td>UNIQUE</td><td>画面側の cafeCode でカフェを特定・UPSERTするため</td></tr>
+          <tr><td>favorites</td><td>uk_favorites_user_cafe</td><td>user_id, cafe_id</td><td>UNIQUE</td><td>同一ユーザーの同一カフェ重複登録を防止し、存在判定を高速化するため</td></tr>
+          <tr><td>favorites</td><td>idx_favorites_user_id</td><td>user_id</td><td>INDEX</td><td>ユーザー別お気に入り一覧取得（WHERE user_id = ?）を高速化するため</td></tr>
+          <tr><td>favorites</td><td>idx_favorites_cafe_id</td><td>cafe_id</td><td>INDEX</td><td>カフェ起点の参照・結合処理を高速化するため</td></tr>
+          <tr><td>user_sessions</td><td>uk_user_sessions_token</td><td>session_token</td><td>UNIQUE</td><td>API認証時にセッショントークンを一意検索するため</td></tr>
+          <tr><td>user_sessions</td><td>idx_user_sessions_user_id</td><td>user_id</td><td>INDEX</td><td>ユーザー単位のセッション管理・削除を効率化するため</td></tr>
+          <tr><td>user_sessions</td><td>idx_user_sessions_expires_at</td><td>expires_at</td><td>INDEX</td><td>期限切れセッション検索や定期削除処理を効率化するため</td></tr>
           </tbody>
         </table>
+
+            <div class="fill-content">
+              <p>補足: 上記インデックス定義は、db/schema.sql の実装内容に合わせて作成している。検索頻度の高いカラムや、ログイン認証・お気に入り管理・セッション管理で利用されるカラムに対してインデックスを設定し、検索性能およびデータ整合性を向上させている。</p>
+            </div>
 
           </div>
         </section>
@@ -110,7 +195,27 @@
           <div class="fill-label">マスタデータ・テストデータ <span class="required">必須</span></div>
           <div class="fill-hint">初期投入するデータ（カテゴリマスタ、管理者ユーザー等）</div>
           <div class="fill-content">
-            <p>（初期データのSQL INSERT文を記載）</p>
+            <pre>-- Cafe Navi 初期データ（マスタデータ）
+USE cafe_navi;
+
+-- カフェマスタ初期投入
+INSERT INTO cafes (external_code, name, area)
+VALUES
+  ('cafe-1',  'スターバックス渋谷ツタヤ店', '渋谷'),
+  ('cafe-2',  'ブルーボトルコーヒー六本木', '六本木'),
+  ('cafe-3',  'カフェ・ルミエール池袋', '池袋'),
+  ('cafe-4',  'コーヒースタンド神保町', '神保町'),
+  ('cafe-5',  'ノマドベース新宿南口', '新宿'),
+  ('cafe-6',  'ミドリカフェ秋葉原', '秋葉原'),
+  ('cafe-7',  'ワークカフェ品川', '品川'),
+  ('cafe-8',  'サニーコーヒー中野', '中野'),
+  ('cafe-9',  'ブリーズカフェ恵比寿', '恵比寿'),
+  ('cafe-10', 'モーニングロースト目黒', '目黒'),
+  ('cafe-11', 'クラフトビーンズ吉祥寺', '吉祥寺')
+ON DUPLICATE KEY UPDATE
+  name = VALUES(name),
+  area = VALUES(area);</pre>
+            <p>補足: 実装上、ユーザー・セッション・お気に入りは運用中に生成されるため、初期投入の必須対象は cafes マスタです。</p>
           </div>
         </div>
 

@@ -69,7 +69,6 @@ function generateNavigation() {
         <a href="${docsPath}04-sitemap.html"><span class="nav-number">04</span> サイトマップ</a>
         <a href="${docsPath}05-wireframe.html"><span class="nav-number">05</span> ワイヤーフレーム</a>
         <a href="${docsPath}06-design-guide.html"><span class="nav-number">06</span> デザインガイドライン</a>
-        <a href="${docsPath}10-retrospective.html"><span class="nav-number">10</span> 振り返り・技術記事</a>
       </div>` : ''}
       ${visibleSections.design ? `
       <div class="nav-group">
@@ -77,6 +76,7 @@ function generateNavigation() {
         <a href="${docsPath}07-specification.html"><span class="nav-number">07</span> 仕様書</a>
         <a href="${docsPath}08-db-design.html"><span class="nav-number">08</span> DB設計書</a>
         <a href="${docsPath}09-test-report.html"><span class="nav-number">09</span> テスト報告書</a>
+        <a href="${docsPath}10-retrospective.html"><span class="nav-number">10</span> 振り返り・技術記事</a>
         <a href="${designPath}system-flow.html"><span class="material-symbols-outlined icon-sm">account_tree</span> システムフロー図</a>
         <a href="${designPath}class-diagram.html"><span class="material-symbols-outlined icon-sm">lan</span> クラス構成図</a>
         <a href="${designPath}method-list.html"><span class="material-symbols-outlined icon-sm">list_alt</span> メソッド一覧</a>
